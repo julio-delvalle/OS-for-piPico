@@ -16,6 +16,11 @@ typedef int tid_t;
 //#define PRI_MAX 63                      /* Highest priority. */
 
 
+/* Scheduling POR EL MOMENTO ROUND ROBIN< CON 4 ticks */
+#define TIME_SLICE 4            /* # of timer ticks to give each thread. */
+static unsigned thread_ticks;   /* # of timer ticks since last yield. */
+
+
 
 enum thread_status
   {
@@ -58,7 +63,13 @@ void thread_init (void);
 void thread_start (void);
 void thread_block (void);
 void thread_unblock (struct thread *);
+void thread_yield (void);
 void thread_exit (void);
+
+//Scheduling:
+void thread_tick(void);
+
+
 
 typedef void thread_func (void *aux);//puntero a función que va a ejecutar el thread.
 tid_t thread_create (const char *name, thread_func *, void *);

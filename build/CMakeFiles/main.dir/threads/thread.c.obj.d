@@ -42,4 +42,5 @@ CMakeFiles\main.dir\threads\thread.c.obj: \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\string.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\stdlib.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\machine\stdlib.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\alloca.h
+ c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\alloca.h \
+ c:\raspberrypipico\pico-projects\misc\timer.h

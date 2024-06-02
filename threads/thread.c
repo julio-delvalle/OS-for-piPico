@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "../misc/timer.h"
 
 static void init_thread (struct thread *, const char *name);
 static struct thread *running_thread (void);
@@ -21,25 +22,32 @@ static struct thread *idle_thread;
 #define PGBITS  12                         /* Number of offset bits. */
 #define PGSIZE  (1 << PGBITS)              /* Bytes in a page. */
 #define PGMASK  BITMASK(PGSHIFT, PGBITS)   /* Page offset bits (0:12). */
-
 /* Round down to nearest page boundary. */
 static inline void *pg_round_down (const void *va) {
   return (void *) ((uintptr_t) va & ~PGMASK);
 }
+
+
+
+
+
+
 /* Random value for struct thread's `magic' member.
    Used to detect stack overflow.  See the big comment at the top
    of thread.h for details. */
 #define THREAD_MAGIC 0xcd6abf4b
 
+
+
+
+
+// =============== LISTAS DE THREADS UTILES ============
 /* List of processes in SLEEP state, that is, processes/threads
 that are waiting to finish their sleep time. */
 static struct list lista_espera;
-
-
 /* List of processes in THREAD_READY state, that is, processes
    that are ready to run but not actually running. */
 static struct list ready_list;
-
 /* List of all processes.  Processes are added to this list
    when they are first scheduled and removed when they exit. */
 static struct list all_list;
@@ -49,6 +57,20 @@ static struct list all_list;
 static struct thread *initial_thread;
 
 
+
+
+
+
+
+
+// ============== SCHEUDLING ===========
+/* Statistics. */
+static long long idle_ticks;    /* # of timer ticks spent idle. */
+static long long kernel_ticks;  /* # of timer ticks in kernel threads. */
+static long long user_ticks;    /* # of timer ticks in user programs. */
+
+#define TIME_SLICE 4            /* # of timer ticks to give each thread. */
+static unsigned thread_ticks;   /* # of timer ticks since last yield. */
 
 
 
@@ -317,6 +339,25 @@ thread_block (void)
   //schedule ();
 }
 
+/* Yields the CPU.  The current thread is not put to sleep and
+   may be scheduled again immediately at the scheduler's whim. */
+void
+thread_yield (void)
+{
+  printf("THREAD YIELD!\n");
+  /*struct thread *cur = thread_current ();
+  //enum intr_level old_level;
+
+  ASSERT (!intr_context ());
+
+  //old_level = intr_disable ();
+  if (cur != idle_thread)
+    list_push_back (&ready_list, &cur->elem);
+  cur->status = THREAD_READY;
+  schedule ();*/
+  //intr_set_level (old_level);
+}
+
 void
 thread_exit (void)
 {
@@ -331,6 +372,31 @@ thread_exit (void)
   thread_current ()->status = THREAD_DYING;
   //schedule ();
   NOT_REACHED ();
+}
+
+
+
+
+
+
+// ================ SCHEDULING ====================
+
+/* Called by the timer interrupt handler at each timer tick.
+   Thus, this function runs in an external interrupt context. */
+void
+thread_tick (void)
+{
+  struct thread *t = thread_current ();
+
+  /* Update statistics. */
+  if (t == idle_thread)
+    idle_ticks++;
+  else
+    kernel_ticks++;
+
+  /* Enforce preemption. */
+  if (++thread_ticks >= TIME_SLICE)
+    intr_yield_on_return ();
 }
 
 
