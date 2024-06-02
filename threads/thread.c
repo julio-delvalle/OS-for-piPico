@@ -1,4 +1,5 @@
 #include "./thread.h"
+#include "../lib/debug.h"
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
@@ -7,12 +8,27 @@ static void init_thread (struct thread *, const char *name);
 static struct thread *running_thread (void);
 static tid_t allocate_tid (void);
 
+//THREADS IMPORTANTES
+struct thread *current_thread;
+static struct thread *idle_thread;
 
 
+
+//PARA MANEJO DE STACK Y DIRECCIONES:
+#define BITMASK(SHIFT, CNT) (((1ul << (CNT)) - 1) << (SHIFT))
 #define PGSHIFT 0                          /* Index of first offset bit. */
 #define PGBITS  12                         /* Number of offset bits. */
 #define PGSIZE  (1 << PGBITS)              /* Bytes in a page. */
 #define PGMASK  BITMASK(PGSHIFT, PGBITS)   /* Page offset bits (0:12). */
+
+/* Round down to nearest page boundary. */
+static inline void *pg_round_down (const void *va) {
+  return (void *) ((uintptr_t) va & ~PGMASK);
+}
+
+
+
+
 
 /* List of processes in SLEEP state, that is, processes/threads
 that are waiting to finish their sleep time. */
@@ -46,7 +62,7 @@ thread_init (void)
     initial_thread->status = THREAD_RUNNING;
     initial_thread->tid = allocate_tid ();
 
-    printf("Se termino de configurar el thread inicial. info: name %s , status %d, tid %d\n",&initial_thread->name, &initial_thread->status, &initial_thread->tid);
+    printf("Se termino de configurar el thread inicial. info: name %s , status %d, tid %d\n",&initial_thread->name, initial_thread->status, initial_thread->tid);
 }
 
 /* Does basic initialization of T as a blocked thread named
@@ -54,8 +70,8 @@ thread_init (void)
 static void
 init_thread (struct thread *t, const char *name)
 {
-  //ASSERT (t != NULL);
-  //ASSERT (name != NULL);
+  ASSERT (t != NULL);
+  ASSERT (name != NULL);
 
   memset (t, 0, sizeof *t);
   t->status = THREAD_BLOCKED;
@@ -94,10 +110,10 @@ running_thread (void)
      down to the start of a page.  Because `struct thread' is
      always at the beginning of a page and the stack pointer is
      somewhere in the middle, this locates the curent thread. */
+  asm ("mov %0, sp\n\t" : "=g" (esp));
   //asm ("mov %%esp, %0" : "=g" (esp));
-  //return pg_round_down (esp);
   printf("SE OBTIENE esp: %x", esp);
-  return (struct thread *)(esp);
+  return pg_round_down (esp);
 }
 
 /* Returns a tid to use for a new thread. */

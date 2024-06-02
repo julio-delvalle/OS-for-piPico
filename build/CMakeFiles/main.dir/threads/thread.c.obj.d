@@ -11,6 +11,7 @@ CMakeFiles\main.dir\threads\thread.c.obj: \
  c:\raspberrypipico\pico-projects\misc\list.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdbool.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stddef.h \
+ c:\raspberrypipico\pico-projects\lib\debug.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\stdio.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\_ansi.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\newlib.h \

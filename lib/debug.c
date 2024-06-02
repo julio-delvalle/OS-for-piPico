@@ -4,6 +4,16 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
+
+
+#define ASSERT(CONDITION)                                       \
+if (CONDITION) { } else {                               \
+        PANIC ("assertion `%s' failed.", #CONDITION);   \
+}
+
+#define PANIC(...) debug_panic (__FILE__, __LINE__, __func__, __VA_ARGS__)
 
 /* Prints the call stack, that is, a list of addresses, one in
    each of the functions we are nested within.  gdb or addr2line
@@ -40,7 +50,8 @@ debug_panic (const char *file, int line, const char *function,
 {
   va_list args;
 
-  printf ("User process ABORT at %s:%d in %s(): ", file, line, function);
+  printf ("User process ABORT at %s:%d in %s(): \n", file, line, function);
+  //printf ("User process ABORT at %s:%d", file, line);
 
   va_start (args, message);
   vprintf (message, args);
@@ -49,5 +60,5 @@ debug_panic (const char *file, int line, const char *function,
 
   //debug_backtrace ();
   
-  //exit (1);
+  exit (1);
 }
