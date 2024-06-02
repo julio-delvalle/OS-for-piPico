@@ -86,8 +86,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/misc/list.c.obj.d"
   "CMakeFiles/main.dir/misc/timer.c.obj"
   "CMakeFiles/main.dir/misc/timer.c.obj.d"
-  "CMakeFiles/main.dir/threads/interrupt.c.obj"
-  "CMakeFiles/main.dir/threads/interrupt.c.obj.d"
   "CMakeFiles/main.dir/threads/thread.c.obj"
   "CMakeFiles/main.dir/threads/thread.c.obj.d"
   "main.elf"

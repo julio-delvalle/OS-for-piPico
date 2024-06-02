@@ -1196,30 +1196,6 @@ misc\timer.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\misc\timer.c.s
 .PHONY : misc\timer.c.s
 
-threads\interrupt.obj: threads\interrupt.c.obj
-.PHONY : threads\interrupt.obj
-
-# target to build an object file
-threads\interrupt.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\threads\interrupt.c.obj
-.PHONY : threads\interrupt.c.obj
-
-threads\interrupt.i: threads\interrupt.c.i
-.PHONY : threads\interrupt.i
-
-# target to preprocess a source file
-threads\interrupt.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\threads\interrupt.c.i
-.PHONY : threads\interrupt.c.i
-
-threads\interrupt.s: threads\interrupt.c.s
-.PHONY : threads\interrupt.s
-
-# target to generate assembly for a file
-threads\interrupt.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\threads\interrupt.c.s
-.PHONY : threads\interrupt.c.s
-
 threads\thread.obj: threads\thread.c.obj
 .PHONY : threads\thread.obj
 
@@ -1384,9 +1360,6 @@ help:
 	@echo ... misc/timer.obj
 	@echo ... misc/timer.i
 	@echo ... misc/timer.s
-	@echo ... threads/interrupt.obj
-	@echo ... threads/interrupt.i
-	@echo ... threads/interrupt.s
 	@echo ... threads/thread.obj
 	@echo ... threads/thread.i
 	@echo ... threads/thread.s

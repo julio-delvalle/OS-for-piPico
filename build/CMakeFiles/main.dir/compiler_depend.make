@@ -1668,21 +1668,21 @@ CMakeFiles\main.dir\misc\list.c.obj: C:\RaspberryPiPico\pico-projects\lib\debug.
 CMakeFiles\main.dir\misc\timer.c.obj: C:\RaspberryPiPico\pico-projects\misc\timer.c
 
 
-CMakeFiles\main.dir\threads\interrupt.c.obj: C:\RaspberryPiPico\pico-projects\threads\interrupt.c
-
-
 CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-projects\threads\thread.c
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\_ansi.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\_newlib_version.h"
+CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\alloca.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\machine\_default_types.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\machine\_endian.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\machine\_types.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\machine\endian.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\machine\ieeefp.h"
+CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\machine\stdlib.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\machine\types.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\newlib.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\stdint.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\stdio.h"
+CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\stdlib.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\string.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\strings.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\sys\_intsup.h"
@@ -2081,7 +2081,5 @@ C:\RaspberryPiPico\pico-projects\misc\list.h:
 C:\RaspberryPiPico\pico-projects\misc\list.c:
 
 C:\RaspberryPiPico\pico-projects\misc\timer.c:
-
-C:\RaspberryPiPico\pico-projects\threads\interrupt.c:
 
 C:\RaspberryPiPico\pico-projects\threads\thread.c:

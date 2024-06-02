@@ -52,12 +52,22 @@ struct thread
   };
 
 
-
+typedef void thread_func (void *aux);
+struct thread *thread_current (void);
 void thread_init (void);
 void thread_start (void);
+void thread_block (void);
+void thread_unblock (struct thread *);
+void thread_exit (void);
 
 typedef void thread_func (void *aux);//puntero a función que va a ejecutar el thread.
 tid_t thread_create (const char *name, thread_func *, void *);
+
+
+//PRINTING PARA DEBUG:
+void print_thread_list(struct list *list);
+void print_all_list();
+void print_ready_list();
 
 
 #endif /* THREAD_H */

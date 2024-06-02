@@ -4,6 +4,14 @@
 #include "lib/debug.h"
 
 
+
+void hello_world(void){
+    printf("Hello World from thread!\n");
+}
+
+
+
+
 int main(){
     //Initialize I/O
     stdio_init_all();
@@ -13,15 +21,27 @@ int main(){
     gpio_set_dir(25, GPIO_OUT);
 
     printf("INICIANDO\n");
+    
 
     thread_init();
+    thread_start();
 
-    ASSERT (1 < 2);
+    struct thread *current = thread_current();
+    printf("current thread: %s\n",&current->name);
+
+    print_all_list();
+
+
+    ASSERT (1 < 2); //prueba de ASSERT. Si este falla fallarán todos los de adentro.
 
     while(1){
+
+        // ============== LLAMAR TESTS, VER INIT.C EN PINTOS =============
         gpio_put(25,1);
-        thread_create(NULL, NULL, NULL);
-        sleep_ms(1000);
+        sleep_ms(5000);
+        thread_create("hola", hello_world, NULL);
+        print_all_list();
+        print_ready_list();
         gpio_put(25,0);
         sleep_ms(1000);
     }
