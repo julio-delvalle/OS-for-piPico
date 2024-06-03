@@ -290,6 +290,10 @@ thread_create (const char *name,
   /* Add to run queue. */
   thread_unblock (t);
 
+  if(name == "idle" && tid == 2){
+    idle_thread = t;
+  }
+
   //printf("Thread create con tid %d.\n",tid);
   return tid;
 }
@@ -332,7 +336,7 @@ thread_yield (void)
   //old_level = intr_disable ();
   if (cur != idle_thread)
     list_push_back (&ready_list, &cur->elem);
-  //cur->status = THREAD_READY; // SE MOVIÓ A SCHEDULE
+  cur->status = THREAD_READY; 
   schedule ();
 
   printf("SALIENDO de Thread Yield desde %s\n",thread_current()->name);
@@ -352,8 +356,6 @@ schedule (void)
   struct thread *cur = running_thread ();
   struct thread *next = next_thread_to_run ();
   struct thread *prev = NULL;
-
-  cur->status = THREAD_READY;
 
   //ASSERT (intr_get_level () == INTR_OFF);
   ASSERT (cur->status != THREAD_RUNNING);
@@ -377,10 +379,14 @@ thread_exit (void)
      and schedule another process.  That process will destroy us
      when it calls thread_schedule_tail(). */
   //intr_disable ();
-  list_remove (&thread_current()->allelem);
-  thread_current ()->status = THREAD_DYING;
+  if(thread_current() != initial_thread && thread_current() != idle_thread){
+    list_remove (&thread_current()->allelem);
+    printf("===EXIT thread %s\n",thread_current()->name);
+    thread_current ()->status = THREAD_DYING;
+  }
   schedule ();
-  NOT_REACHED ();
+
+  //NOT_REACHED ();
 }
 
 
@@ -504,7 +510,7 @@ running_thread (void)
   //asm ("mov %%esp, %0" : "=g" (esp));
   //printf("SE OBTIENE esp en running_thread: %x \n", esp);
   //return pg_round_down (esp);
-  ASSERT(thread_running_var->status == THREAD_RUNNING);
+  //ASSERT(thread_running_var->status == THREAD_RUNNING);
   return thread_running_var;
 }
 

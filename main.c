@@ -68,9 +68,11 @@ int main(){
         sleep_ms(5000);
 
         if(count < 5){
-            sprintf(nombre, "hola-%d", count);
+            //sprintf(nombre, "hola", count);
             count++; 
             thread_create(nombre, hello_world, NULL);
+        }else{
+            thread_exit();
         }
         printf("ALL: ");
         print_all_list();
