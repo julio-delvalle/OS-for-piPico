@@ -32,6 +32,8 @@ switch_threads:
     BX LR
 .size switch_threads, .-switch_threads
 
+
+
 .global switch_entry
 .type switch_entry, %function
 switch_entry:

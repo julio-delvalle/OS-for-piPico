@@ -29,12 +29,17 @@ struct thread* switch_threads_c (struct thread *cur, struct thread *next){
     asm ("mov %0, r10\n\t" : "=g" (cur->register_save.r10));
     asm ("mov %0, r11\n\t" : "=g" (cur->register_save.r11));
     asm ("mov %0, r12\n\t" : "=g" (cur->register_save.r12));*/
-    //La última instruccion de ese thread: guarda el SP:
+    
+    //La última instruccion de ese thread: guarda el LR y SP y PC;
+    /*asm ("mov %0, lr\n\t" : "=g" (cur->register_save.lr));
     asm ("mov %0, sp\n\t" : "=g" (cur->register_save.sp));
+    asm ("mov %0, pc\n\t" : "=g" (cur->register_save.pc));*/
 
 
-    //Nos pasamos al nuevo thread, cargamos el SP:
-    // asm ("mov %%sp, %0\n\t" : : "r" (next->register_save.sp + thread_stack_ofs)); //Qué pasa si no cambio el SP? 
+    //Nos pasamos al nuevo thread
+
+
+
 
     //Cargamos todos los 12 registros básicos que estaban guardados. Si el thread está iniciando está todo en 0.
     //asm ("mov %%r0, %0\n\t" : : "r" (next->register_save.r0)); // R0 NO LO REGRESA PORQUE ES EL QUE TRAE A *CUR !!!!!!!!
@@ -52,6 +57,16 @@ struct thread* switch_threads_c (struct thread *cur, struct thread *next){
     asm ("mov %%r12, %0\n\t" : : "r" (next->register_save.r12));*/
 
 
+    //Finalmente restauramos LR y SP para que salte a switch_entry si es primera vez.
+    //asm ("mov %%r0, %0\n\t" : : "r" (next->register_save.sp)); 
+    //asm ("mov %%sp, %%r0\n\t" : : ); 
+    //asm ("mov %%lr, %0\n\t" : : "r" (next->register_save.lr)); 
+    //y PC para que se vaya de un solo a switch_entry
+    //asm ("mov %%pc, %0\n\t" : : "r" (next->register_save.pc)); 
+
+
+    
+    // Lo colocamos como running.
     set_thread_running(next);
 
     return cur;

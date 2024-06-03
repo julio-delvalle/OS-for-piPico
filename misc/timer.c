@@ -7,6 +7,7 @@
 #include "threads/synch.h"*/
 #include "../threads/thread.h"
 #include "pico/stdlib.h" // PARA IMPLEMENTAR TICKS CON TIMER_INTERRUPT.
+#include "hardware/sync.h"
   
 
 
@@ -53,9 +54,9 @@ timer_init ()
 int
 timer_ticks (void) 
 {
-  //enum intr_level old_level = intr_disable ();
+  uint32_t old_level =  save_and_disable_interrupts();
   int t = ticks;
-  //intr_set_level (old_level);
+  restore_interrupts(old_level);
   return t;
 }
 

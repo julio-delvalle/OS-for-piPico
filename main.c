@@ -24,7 +24,8 @@ bool timer_interrupt (struct repeating_timer *t)
 void hello_world(void *t);
 
 void hello_world(void* t){
-    printf("Hello World from thread!\n");
+    printf("\n\nHello World from thread!\n\n");
+    thread_exit();
 }
 
 
@@ -65,7 +66,7 @@ int main(){
 
         // ============== LLAMAR TESTS, VER INIT.C EN PINTOS =============
         gpio_put(25,1);
-        sleep_ms(5000);
+        sleep_ms(2000);
 
         if(count < 5){
             sprintf(nombre, "hola-%d", count);
@@ -79,10 +80,10 @@ int main(){
         printf("ticks: %d\n",timer_ticks());
         gpio_put(25,0);
         sleep_ms(1000);
-        thread_yield();
     }
-}
 
+    thread_exit();
+}
 
 
 /*#include "pico/stdlib.h"

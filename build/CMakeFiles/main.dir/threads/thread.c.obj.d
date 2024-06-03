@@ -45,4 +45,21 @@ CMakeFiles\main.dir\threads\thread.c.obj: \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\stdlib.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\machine\stdlib.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\alloca.h \
- c:\raspberrypipico\pico-projects\misc\timer.h
+ c:\raspberrypipico\pico-projects\misc\timer.h \
+ C:\RaspberryPiPico\pico-sdk\src\rp2_common\hardware_sync\include/hardware/sync.h \
+ C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include/pico.h \
+ C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include/pico/types.h \
+ C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include/pico/assert.h \
+ c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\assert.h \
+ C:\RaspberryPiPico\pico-projects\build\generated\pico_base/pico/version.h \
+ C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include/pico/config.h \
+ C:\RaspberryPiPico\pico-projects\build\generated\pico_base/pico/config_autogen.h \
+ C:/RaspberryPiPico/pico-sdk/src/boards/include/boards/pico.h \
+ C:/RaspberryPiPico/pico-sdk/src/rp2_common/cmsis/include/cmsis/rename_exceptions.h \
+ C:\RaspberryPiPico\pico-sdk\src\rp2_common\pico_platform\include/pico/platform.h \
+ C:\RaspberryPiPico\pico-sdk\src\rp2040\hardware_regs\include/hardware/platform_defs.h \
+ C:\RaspberryPiPico\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/addressmap.h \
+ C:\RaspberryPiPico\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/sio.h \
+ C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include/pico/types.h \
+ C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include/pico/error.h \
+ C:\RaspberryPiPico\pico-sdk\src\rp2_common\hardware_base\include/hardware/address_mapped.h

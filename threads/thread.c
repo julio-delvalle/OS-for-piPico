@@ -6,11 +6,24 @@
 #include <string.h>
 #include <stdlib.h>
 #include "../misc/timer.h"
+#include <stdarg.h>  
+#include "hardware/sync.h"
 
 static void init_thread (struct thread *, const char *name);
 static struct thread *running_thread (void);
 static struct thread *running_thread_init (void);
 static tid_t allocate_tid (void);
+
+
+
+// TEST CORRER FUNCIONES
+void thread_run(struct thread* caller, thread_func *function, void *aux);
+
+void thread_run(struct thread* caller, thread_func *function, void *aux){
+  if(caller->status == THREAD_RUNNING){
+    function(aux);
+  }
+}
 
 
 //THREADS IMPORTANTES
@@ -68,7 +81,8 @@ static long long idle_ticks;    /* # of timer ticks spent idle. */
 static long long kernel_ticks;  /* # of timer ticks in kernel threads. */
 static long long user_ticks;    /* # of timer ticks in user programs. */
 
-#define TIME_SLICE 4            /* # of timer ticks to give each thread. */
+/* Scheduling POR EL MOMENTO ROUND ROBIN< CON 50 ticks */
+#define TIME_SLICE 50            /* # of timer ticks to give each thread. */
 static unsigned thread_ticks;   /* # of timer ticks since last yield. */
 
 static struct thread *next_thread_to_run (void);
@@ -114,14 +128,14 @@ static void
 idle (void *idle_started_ UNUSED)
 {
   printf("Ejecutando función IDLE!\n");
-  struct semaphore *idle_started = idle_started_;
+  //struct semaphore *idle_started = idle_started_;
   idle_thread = thread_current ();
   //sema_up (idle_started);
 
   for (;;)
     {
       /* Let someone else run. */
-      //intr_disable ();
+      //save_and_disable_interrupts();
       thread_block ();
 
       /* Re-enable interrupts and wait for the next one.
@@ -140,16 +154,20 @@ idle (void *idle_started_ UNUSED)
     }
 }
 
+
+
+// ESTE EJECUTA LAS FUNCIONES DE LOS THREADS.
 static void kernel_thread (thread_func *, void *aux);
 /* Function used as the basis for a kernel thread. */
 static void
 kernel_thread (thread_func *function, void *aux)
 {
+  printf("\nADENTRO DE KERNEL_THREAD\n\n");
   ASSERT (function != NULL);
 
-  //intr_enable ();       /* The scheduler runs with interrupts off. */
+  restore_interrupts(0);       /* The scheduler runs with interrupts off. */
   function (aux);       /* Execute the thread function. */
-  //thread_exit ();       /* If function() returns, kill the thread. */
+  thread_exit ();       /* If function() returns, kill the thread. */
 }
 
 
@@ -194,6 +212,10 @@ alloc_frame (struct thread *t, size_t size)
 void
 thread_init (void)
 {
+   
+    uint32_t old_level = save_and_disable_interrupts();
+
+
     list_init (&ready_list);
     list_init (&all_list);
     list_init (&lista_espera);
@@ -207,6 +229,8 @@ thread_init (void)
     thread_running_var = initial_thread;
 
     printf("Se termino de configurar el thread inicial. info: name %s , status %d, tid %d\n",&initial_thread->name, initial_thread->status, initial_thread->tid);
+
+    restore_interrupts(old_level);
 }
 
 /* Does basic initialization of T as a blocked thread named
@@ -241,7 +265,7 @@ thread_start (void)
   thread_create ("idle", idle, NULL);
 
   /* Start preemptive thread scheduling. */
-  //intr_enable ();
+  restore_interrupts(0);
 
   /* Wait for the idle thread to initialize idle_thread. */
   //sema_down (&idle_started);
@@ -278,17 +302,26 @@ thread_create (const char *name,
   kf->aux = aux;
 
   /* Stack frame for switch_entry(). */
-  
-  //========= ESTO PARECE SER PARA CONTEXT SWITCH ====== COMENTADO POR AHORA =========
-  //ef = alloc_frame (t, sizeof *ef);
-  //ef->eip = (void (*) (void)) kernel_thread;
+  ef = alloc_frame (t, sizeof *ef);
+  ef->eip = (void (*) (void)) kernel_thread;   // Kernel thread ejecuta la funcion (??)
   /* Stack frame for switch_threads(). */
-  //sf = alloc_frame (t, sizeof *sf);
-  //sf->eip = switch_entry;
-  //sf->ebp = 0;
+  sf = alloc_frame (t, sizeof *sf);
+  sf->eip = switch_entry;
+  sf->ebp = 0;
 
+
+  //El stack pointer será el stack falso que creamos con kernel_thread_frame kf
+  t->register_save.sp = (uint32_t)(kf);
+  //Al salir de switch_treads_c, se va a dirigir a EIP, que es el switch_entry.
+  t->register_save.pc = (uint32_t)(sf->eip);
+  //Y va a tener guardado en LR el kernel_thread, para así irse a ejecutar la función. Pero hay que ver que pasa con kf->function.
+  t->register_save.lr = (uint32_t)(ef->eip);
+
+  
   /* Add to run queue. */
   thread_unblock (t);
+
+  thread_run(t, function, aux);
 
   //printf("Thread create con tid %d.\n",tid);
   return tid;
@@ -297,15 +330,14 @@ thread_create (const char *name,
 void
 thread_unblock (struct thread *t)
 {
-  //enum intr_level old_level;
 
   ASSERT (is_thread (t));
 
-  //old_level = intr_disable ();
+  uint32_t old_level = save_and_disable_interrupts();
   ASSERT (t->status == THREAD_BLOCKED);
   list_push_back (&ready_list, &t->elem);
   t->status = THREAD_READY;
-  //intr_set_level (old_level);
+  restore_interrupts(old_level);
 }
 
 void
@@ -314,8 +346,10 @@ thread_block (void)
   //ASSERT (!intr_context ());
   //ASSERT (intr_get_level () == INTR_OFF);
 
+  save_and_disable_interrupts();
+
   thread_current ()->status = THREAD_BLOCKED;
-  //schedule ();
+  schedule ();
 }
 
 /* Yields the CPU.  The current thread is not put to sleep and
@@ -323,20 +357,15 @@ thread_block (void)
 void
 thread_yield (void)
 {
-  printf("THREAD YIELD desde %s\n",thread_current()->name);
   struct thread *cur = thread_current ();
-  //enum intr_level old_level;
 
-  //ASSERT (!intr_context ());
-
-  //old_level = intr_disable ();
+  uint32_t old_level = save_and_disable_interrupts();
   if (cur != idle_thread)
     list_push_back (&ready_list, &cur->elem);
-  //cur->status = THREAD_READY; // SE MOVIÓ A SCHEDULE
+  cur->status = THREAD_READY; 
   schedule ();
 
-  printf("SALIENDO de Thread Yield desde %s\n",thread_current()->name);
-  //intr_set_level (old_level);
+  restore_interrupts(old_level);  
 }
 
 /* Schedules a new process.  At entry, interrupts must be off and
@@ -349,11 +378,12 @@ thread_yield (void)
 static void
 schedule (void)
 {
+  printf("Schedule desde %s\n",running_thread()->name);
+
   struct thread *cur = running_thread ();
   struct thread *next = next_thread_to_run ();
   struct thread *prev = NULL;
 
-  cur->status = THREAD_READY;
 
   //ASSERT (intr_get_level () == INTR_OFF);
   ASSERT (cur->status != THREAD_RUNNING);
@@ -363,24 +393,36 @@ schedule (void)
     prev = switch_threads_c (cur, next);
   //printf("retornó %x\n",*prev);
   thread_schedule_tail (prev);
+  printf("SALIENDO de schedule desde %s\n",thread_current()->name);
 }
 
 
 
+/* Deschedules the current thread and destroys it.  Never
+   returns to the caller. */
 void
 thread_exit (void)
 {
   //ASSERT (!intr_context ());
+  if(running_thread() != initial_thread && running_thread() != idle_thread){
+     restore_interrupts(0);
 
-
-  /* Remove thread from all threads list, set our status to dying,
-     and schedule another process.  That process will destroy us
-     when it calls thread_schedule_tail(). */
-  //intr_disable ();
-  list_remove (&thread_current()->allelem);
-  thread_current ()->status = THREAD_DYING;
+    /* Remove thread from all threads list, set our status to dying,
+      and schedule another process.  That process will destroy us
+      when it calls thread_schedule_tail(). */
+    save_and_disable_interrupts();
+    list_remove (&thread_current()->allelem);
+    thread_current ()->status = THREAD_DYING;
+  }
+ 
   schedule ();
-  NOT_REACHED ();
+
+
+
+
+  printf("\n=========\nNO DEBIÓ HABER LLEGADO AQUÏ THREAD EXIT \n===========\n");
+
+  //NOT_REACHED ();
 }
 
 
@@ -404,8 +446,11 @@ thread_tick (void)
     kernel_ticks++;
 
   /* Enforce preemption. */
-  if (++thread_ticks >= TIME_SLICE)
-    intr_yield_on_return ();
+  if (++thread_ticks >= TIME_SLICE){
+    printf("YA SE PASÓ!\n");
+    //intr_yield_on_return ();
+    thread_yield();
+  }
 }
 
 /* Chooses and returns the next thread to be scheduled.  Should
@@ -461,7 +506,8 @@ thread_schedule_tail (struct thread *prev)
   if (prev != NULL && prev->status == THREAD_DYING && prev != initial_thread)
     {
       ASSERT (prev != cur);
-      free (prev); // MATAR AL THREAD< THREAD_EXIT().
+      printf("Se terminó thread %s.\n",prev->name);
+      free (prev); 
     }
 }
 
@@ -504,7 +550,9 @@ running_thread (void)
   //asm ("mov %%esp, %0" : "=g" (esp));
   //printf("SE OBTIENE esp en running_thread: %x \n", esp);
   //return pg_round_down (esp);
-  ASSERT(thread_running_var->status == THREAD_RUNNING);
+
+
+  //ASSERT(thread_running_var->status == THREAD_RUNNING); // SE QUITÓ PORQUE EXIT SE USA A VECES PARA ELIMINAR O CONTEXT SWITCH Y NO SIEMPRE ESTÄ RUNNING.
   return thread_running_var;
 }
 
@@ -545,6 +593,29 @@ allocate_tid (void)
   return tid;
 }
 
+
+
+
+
+// ============= PRINTING PARA DEBUG ==============
+
+
+
+static const char *test_name;
+/* Prints FORMAT as if with printf(),
+   prefixing the output by the name of the test
+   and following it with a new-line character. */
+void
+msg (const char *format, ...) 
+{
+  va_list args;
+  
+  printf ("(%s) ", test_name);
+  va_start (args, format);
+  vprintf (format, args);
+  va_end (args);
+  putchar ('\n');
+}
 
 
 void print_thread_list(struct list *list){

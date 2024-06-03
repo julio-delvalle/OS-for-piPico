@@ -22,9 +22,7 @@ typedef int tid_t;
 //#define PRI_MAX 63                      /* Highest priority. */
 
 
-/* Scheduling POR EL MOMENTO ROUND ROBIN< CON 4 ticks */
-#define TIME_SLICE 4            /* # of timer ticks to give each thread. */
-static unsigned thread_ticks;   /* # of timer ticks since last yield. */
+
 
 
 
@@ -109,6 +107,7 @@ tid_t thread_create (const char *name, thread_func *, void *);
 void print_thread_list(struct list *list);
 void print_all_list();
 void print_ready_list();
+void thread_msg();
 
 
 #endif /* THREAD_H */
