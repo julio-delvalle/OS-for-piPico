@@ -19,6 +19,7 @@ set(CMAKE_DEPENDS_CHECK_ASM
   "C:/RaspberryPiPico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S" "C:/RaspberryPiPico/pico-projects/build/CMakeFiles/main.dir/C_/RaspberryPiPico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj"
   "C:/RaspberryPiPico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S" "C:/RaspberryPiPico/pico-projects/build/CMakeFiles/main.dir/C_/RaspberryPiPico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj"
   "C:/RaspberryPiPico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S" "C:/RaspberryPiPico/pico-projects/build/CMakeFiles/main.dir/C_/RaspberryPiPico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj"
+  "C:/RaspberryPiPico/pico-projects/lib/switch.S" "C:/RaspberryPiPico/pico-projects/build/CMakeFiles/main.dir/lib/switch.S.obj"
   )
 
 # Preprocessor definitions for this target.
@@ -140,6 +141,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/RaspberryPiPico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c" "CMakeFiles/main.dir/C_/RaspberryPiPico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj" "gcc" "CMakeFiles/main.dir/C_/RaspberryPiPico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj.d"
   "C:/RaspberryPiPico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c" "CMakeFiles/main.dir/C_/RaspberryPiPico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj" "gcc" "CMakeFiles/main.dir/C_/RaspberryPiPico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj.d"
   "C:/RaspberryPiPico/pico-projects/lib/debug.c" "CMakeFiles/main.dir/lib/debug.c.obj" "gcc" "CMakeFiles/main.dir/lib/debug.c.obj.d"
+  "C:/RaspberryPiPico/pico-projects/lib/palloc.c" "CMakeFiles/main.dir/lib/palloc.c.obj" "gcc" "CMakeFiles/main.dir/lib/palloc.c.obj.d"
+  "C:/RaspberryPiPico/pico-projects/lib/switch.c" "CMakeFiles/main.dir/lib/switch.c.obj" "gcc" "CMakeFiles/main.dir/lib/switch.c.obj.d"
   "C:/RaspberryPiPico/pico-projects/main.c" "CMakeFiles/main.dir/main.c.obj" "gcc" "CMakeFiles/main.dir/main.c.obj.d"
   "C:/RaspberryPiPico/pico-projects/misc/list.c" "CMakeFiles/main.dir/misc/list.c.obj" "gcc" "CMakeFiles/main.dir/misc/list.c.obj.d"
   "C:/RaspberryPiPico/pico-projects/misc/timer.c" "CMakeFiles/main.dir/misc/timer.c.obj" "gcc" "CMakeFiles/main.dir/misc/timer.c.obj.d"

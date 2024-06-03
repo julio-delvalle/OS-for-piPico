@@ -190,3 +190,5 @@ CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\pico_standard_lin
 CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\pico_standard_link\crt0.S.obj: generated\pico_base\pico\config_autogen.h
 CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\pico_standard_link\crt0.S.obj: generated\pico_base\pico\version.h
 
+CMakeFiles\main.dir\lib\switch.S.obj: C:\RaspberryPiPico\pico-projects\lib\switch.S
+

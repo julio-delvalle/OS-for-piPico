@@ -1124,6 +1124,62 @@ lib\debug.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\lib\debug.c.s
 .PHONY : lib\debug.c.s
 
+lib\palloc.obj: lib\palloc.c.obj
+.PHONY : lib\palloc.obj
+
+# target to build an object file
+lib\palloc.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\lib\palloc.c.obj
+.PHONY : lib\palloc.c.obj
+
+lib\palloc.i: lib\palloc.c.i
+.PHONY : lib\palloc.i
+
+# target to preprocess a source file
+lib\palloc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\lib\palloc.c.i
+.PHONY : lib\palloc.c.i
+
+lib\palloc.s: lib\palloc.c.s
+.PHONY : lib\palloc.s
+
+# target to generate assembly for a file
+lib\palloc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\lib\palloc.c.s
+.PHONY : lib\palloc.c.s
+
+lib\switch.obj: lib\switch.S.obj
+.PHONY : lib\switch.obj
+
+# target to build an object file
+lib\switch.S.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\lib\switch.S.obj
+.PHONY : lib\switch.S.obj
+
+lib\switch.obj: lib\switch.c.obj
+.PHONY : lib\switch.obj
+
+# target to build an object file
+lib\switch.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\lib\switch.c.obj
+.PHONY : lib\switch.c.obj
+
+lib\switch.i: lib\switch.c.i
+.PHONY : lib\switch.i
+
+# target to preprocess a source file
+lib\switch.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\lib\switch.c.i
+.PHONY : lib\switch.c.i
+
+lib\switch.s: lib\switch.c.s
+.PHONY : lib\switch.s
+
+# target to generate assembly for a file
+lib\switch.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\lib\switch.c.s
+.PHONY : lib\switch.c.s
+
 main.obj: main.c.obj
 .PHONY : main.obj
 
@@ -1351,6 +1407,13 @@ help:
 	@echo ... lib/debug.obj
 	@echo ... lib/debug.i
 	@echo ... lib/debug.s
+	@echo ... lib/palloc.obj
+	@echo ... lib/palloc.i
+	@echo ... lib/palloc.s
+	@echo ... lib/switch.obj
+	@echo ... lib/switch.obj
+	@echo ... lib/switch.i
+	@echo ... lib/switch.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

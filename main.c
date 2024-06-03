@@ -3,6 +3,7 @@
 #include "threads/thread.h"
 #include "lib/debug.h"
 #include "misc/timer.h"
+#include "lib/palloc.h"
 
 
 
@@ -40,15 +41,13 @@ int main(){
     
 
     thread_init();
+    //palloc_init (20); /// NO FUNCIONA, DA HARDFAULT.
     thread_start();
-    //timer_init(10000); //Timer init, con 10000us = 10m
 
     //TIMER:
     struct repeating_timer timer;
-
     printf("se creó timer\n");
-
-    add_repeating_timer_ms(10, timer_interrupt, NULL, &timer);
+    add_repeating_timer_ms(10, timer_interrupt, NULL, &timer); //TIMER 100 Hz = 10ms
 
 
     struct thread *current = thread_current();
@@ -59,17 +58,28 @@ int main(){
 
     ASSERT (1 < 2); //prueba de ASSERT. Si este falla fallarán todos los de adentro.
 
+    int count = 0;
+    char nombre[] = "hola";
+
     while(1){
 
         // ============== LLAMAR TESTS, VER INIT.C EN PINTOS =============
         gpio_put(25,1);
         sleep_ms(5000);
-        thread_create("hola", hello_world, NULL);
+
+        if(count < 5){
+            sprintf(nombre, "hola-%d", count);
+            count++; 
+            thread_create(nombre, hello_world, NULL);
+        }
+        printf("ALL: ");
         print_all_list();
+        printf("READY: ");
         print_ready_list();
         printf("ticks: %d\n",timer_ticks());
         gpio_put(25,0);
         sleep_ms(1000);
+        thread_yield();
     }
 }
 

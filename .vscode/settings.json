@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "thread.h": "c"
-    }
+        "thread.h": "c",
+        "limits.h": "c",
+        "thread": "c"
+    },
+    "cortex-debug.variableUseNaturalFormat": true
 }

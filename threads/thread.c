@@ -1,5 +1,6 @@
 #include "./thread.h"
 #include "../lib/debug.h"
+#include "../lib/switch.h"
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
@@ -8,20 +9,18 @@
 
 static void init_thread (struct thread *, const char *name);
 static struct thread *running_thread (void);
+static struct thread *running_thread_init (void);
 static tid_t allocate_tid (void);
 
+
 //THREADS IMPORTANTES
-struct thread *current_thread;
+struct thread *thread_running_var;
+//struct thread *current_thread;
 static struct thread *idle_thread;
 
 
 
-//PARA MANEJO DE STACK Y DIRECCIONES:
-#define BITMASK(SHIFT, CNT) (((1ul << (CNT)) - 1) << (SHIFT))
-#define PGSHIFT 0                          /* Index of first offset bit. */
-#define PGBITS  12                         /* Number of offset bits. */
-#define PGSIZE  (1 << PGBITS)              /* Bytes in a page. */
-#define PGMASK  BITMASK(PGSHIFT, PGBITS)   /* Page offset bits (0:12). */
+
 /* Round down to nearest page boundary. */
 static inline void *pg_round_down (const void *va) {
   return (void *) ((uintptr_t) va & ~PGMASK);
@@ -72,6 +71,11 @@ static long long user_ticks;    /* # of timer ticks in user programs. */
 #define TIME_SLICE 4            /* # of timer ticks to give each thread. */
 static unsigned thread_ticks;   /* # of timer ticks since last yield. */
 
+static struct thread *next_thread_to_run (void);
+static void schedule (void);
+void thread_schedule_tail (struct thread *prev);
+
+
 
 
 // ======== FUNCIONES SIMPLES PARA VALIDACIONES ============
@@ -109,6 +113,7 @@ static void idle (void *aux UNUSED);
 static void
 idle (void *idle_started_ UNUSED)
 {
+  printf("Ejecutando función IDLE!\n");
   struct semaphore *idle_started = idle_started_;
   idle_thread = thread_current ();
   //sema_up (idle_started);
@@ -162,23 +167,6 @@ struct kernel_thread_frame
     thread_func *function;      /* Function to call. */
     void *aux;                  /* Auxiliary data for function. */
   };
-/* Stack frame for switch_entry(). */
-struct switch_entry_frame
-  {
-    void (*eip) (void);
-  };
-
-/* switch_thread()'s stack frame. */
-struct switch_threads_frame 
-  {
-    uint32_t edi;               /*  0: Saved %edi. */
-    uint32_t esi;               /*  4: Saved %esi. */
-    uint32_t ebp;               /*  8: Saved %ebp. */
-    uint32_t ebx;               /* 12: Saved %ebx. */
-    void (*eip) (void);         /* 16: Return address. */
-    struct thread *cur;         /* 20: switch_threads()'s CUR argument. */
-    struct thread *next;        /* 24: switch_threads()'s NEXT argument. */
-  };
 
 
 static void *
@@ -211,10 +199,12 @@ thread_init (void)
     list_init (&lista_espera);
 
     /* Set up a thread structure for the running thread. */
-    initial_thread = running_thread ();
+    initial_thread = running_thread_init ();
     init_thread (initial_thread, "main");
     initial_thread->status = THREAD_RUNNING;
     initial_thread->tid = allocate_tid ();
+
+    thread_running_var = initial_thread;
 
     printf("Se termino de configurar el thread inicial. info: name %s , status %d, tid %d\n",&initial_thread->name, initial_thread->status, initial_thread->tid);
 }
@@ -256,17 +246,6 @@ thread_start (void)
   /* Wait for the idle thread to initialize idle_thread. */
   //sema_down (&idle_started);
 }
-
-
-
-/*tid_t
-thread_create (const char *name, 
-               thread_func *function, void *aux)
-{
-
-  tid_t tid = allocate_tid();
-  printf("Thread create con tid %d.\n",tid);
-}*/
 
 tid_t
 thread_create (const char *name,
@@ -344,19 +323,49 @@ thread_block (void)
 void
 thread_yield (void)
 {
-  printf("THREAD YIELD!\n");
-  /*struct thread *cur = thread_current ();
+  printf("THREAD YIELD desde %s\n",thread_current()->name);
+  struct thread *cur = thread_current ();
   //enum intr_level old_level;
 
-  ASSERT (!intr_context ());
+  //ASSERT (!intr_context ());
 
   //old_level = intr_disable ();
   if (cur != idle_thread)
     list_push_back (&ready_list, &cur->elem);
-  cur->status = THREAD_READY;
-  schedule ();*/
+  //cur->status = THREAD_READY; // SE MOVIÓ A SCHEDULE
+  schedule ();
+
+  printf("SALIENDO de Thread Yield desde %s\n",thread_current()->name);
   //intr_set_level (old_level);
 }
+
+/* Schedules a new process.  At entry, interrupts must be off and
+   the running process's state must have been changed from
+   running to some other state.  This function finds another
+   thread to run and switches to it.
+
+   It's not safe to call printf() until thread_schedule_tail()
+   has completed. */
+static void
+schedule (void)
+{
+  struct thread *cur = running_thread ();
+  struct thread *next = next_thread_to_run ();
+  struct thread *prev = NULL;
+
+  cur->status = THREAD_READY;
+
+  //ASSERT (intr_get_level () == INTR_OFF);
+  ASSERT (cur->status != THREAD_RUNNING);
+  ASSERT (is_thread (next));
+
+  if (cur != next)
+    prev = switch_threads_c (cur, next);
+  //printf("retornó %x\n",*prev);
+  thread_schedule_tail (prev);
+}
+
+
 
 void
 thread_exit (void)
@@ -370,7 +379,7 @@ thread_exit (void)
   //intr_disable ();
   list_remove (&thread_current()->allelem);
   thread_current ()->status = THREAD_DYING;
-  //schedule ();
+  schedule ();
   NOT_REACHED ();
 }
 
@@ -399,11 +408,88 @@ thread_tick (void)
     intr_yield_on_return ();
 }
 
+/* Chooses and returns the next thread to be scheduled.  Should
+   return a thread from the run queue, unless the run queue is
+   empty.  (If the running thread can continue running, then it
+   will be in the run queue.)  If the run queue is empty, return
+   idle_thread. */
+static struct thread *
+next_thread_to_run (void)
+{
+  if (list_empty (&ready_list))
+    return idle_thread;
+  else
+    return list_entry (list_pop_front (&ready_list), struct thread, elem);
+}
+
+
+
+/* Completes a thread switch by activating the new thread's page
+   tables, and, if the previous thread is dying, destroying it.
+
+   At this function's invocation, we just switched from thread
+   PREV, the new thread is already running, and interrupts are
+   still disabled.  This function is normally invoked by
+   thread_schedule() as its final action before returning, but
+   the first time a thread is scheduled it is called by
+   switch_entry() (see switch.S).
+
+   It's not safe to call printf() until the thread switch is
+   complete.  In practice that means that printf()s should be
+   added at the end of the function.
+
+   After this function and its caller returns, the thread switch
+   is complete. */
+void
+thread_schedule_tail (struct thread *prev)
+{
+  struct thread *cur = running_thread ();
+
+  //ASSERT (intr_get_level () == INTR_OFF);
+
+  /* Mark us as running. */
+  // cur->status = THREAD_RUNNING;  YA LO HACE EL SWITCH_THREAD.
+
+  /* Start new time slice. */
+  thread_ticks = 0;
+
+  /* If the thread we switched from is dying, destroy its struct
+     thread.  This must happen late so that thread_exit() doesn't
+     pull out the rug under itself.  (We don't free
+     initial_thread because its memory was not obtained via
+     palloc().) */
+  if (prev != NULL && prev->status == THREAD_DYING && prev != initial_thread)
+    {
+      ASSERT (prev != cur);
+      free (prev); // MATAR AL THREAD< THREAD_EXIT().
+    }
+}
 
 
 
 
 
+void set_thread_running(struct thread *t){
+  t->status = THREAD_RUNNING;
+  thread_running_var = t;
+
+}
+
+
+//LAMADA PARA INICIAR MAIN:
+struct thread * 
+running_thread_init (void)
+{
+  uint32_t *esp;
+
+  /* Copy the CPU's stack pointer into `esp', and then round that
+     down to the start of a page.  Because `struct thread' is
+     always at the beginning of a page and the stack pointer is
+     somewhere in the middle, this locates the curent thread. */
+  //asm ("mov %%esp, %0" : "=g" (esp));
+  asm ("mov %0, sp\n\t" : "=g" (esp));
+  return pg_round_down (esp);
+}
 
 struct thread *
 running_thread (void)
@@ -414,10 +500,12 @@ running_thread (void)
      down to the start of a page.  Because `struct thread' is
      always at the beginning of a page and the stack pointer is
      somewhere in the middle, this locates the curent thread. */
-  asm ("mov %0, sp\n\t" : "=g" (esp));
+  //asm ("mov %0, sp\n\t" : "=g" (esp));
   //asm ("mov %%esp, %0" : "=g" (esp));
   //printf("SE OBTIENE esp en running_thread: %x \n", esp);
-  return pg_round_down (esp);
+  //return pg_round_down (esp);
+  ASSERT(thread_running_var->status == THREAD_RUNNING);
+  return thread_running_var;
 }
 
 /* Returns the running thread.

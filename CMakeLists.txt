@@ -12,8 +12,11 @@ add_executable(main
     misc/timer.c
     threads/thread.c
     lib/debug.c
+    lib/switch.S
+    lib/switch.c
     #lib/interrupt.c
     #lib/synch.c
+    lib/palloc.c
 )
 
 target_link_libraries(main pico_stdlib)

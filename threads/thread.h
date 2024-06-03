@@ -9,6 +9,12 @@ typedef int tid_t;
 
 
 
+//PARA MANEJO DE STACK Y DIRECCIONES:
+#define BITMASK(SHIFT, CNT) (((1ul << (CNT)) - 1) << (SHIFT))
+#define PGSHIFT 0                          /* Index of first offset bit. */
+#define PGBITS  12                         /* Number of offset bits. */
+#define PGSIZE  (1 << PGBITS)              /* Bytes in a page. */
+#define PGMASK  BITMASK(PGSHIFT, PGBITS)   /* Page offset bits (0:12). */
 
 /* Thread priorities. NO SE USAN. FIFO O ROUNDROBIN NO NECESITA PRIORIDADES.*/
 //#define PRI_MIN 0                       /* Lowest priority. */
@@ -31,6 +37,26 @@ enum thread_status
   };
 
 
+struct thread_register_save 
+  {
+    uint32_t r0;
+    uint32_t r1;
+    uint32_t r2;
+    uint32_t r3;
+    uint32_t r4;
+    uint32_t r5;
+    uint32_t r6;
+    uint32_t r7;
+    uint32_t r8;
+    uint32_t r9;
+    uint32_t r10;
+    uint32_t r11;
+    uint32_t r12;
+    uint32_t sp;
+    uint32_t lr;
+    uint32_t pc;
+  };
+
 struct thread
   {
     tid_t tid;                          /* Thread identifier. */
@@ -52,6 +78,9 @@ struct thread
     //struct lock *waiting_lock; /* Lock al que el thread está esperando a que se libere*/
     //struct list waiting_for_locks_list; /* Lista de los locks que está esperando/a los que les donó. */
 
+
+    struct thread_register_save register_save;
+
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */
   };
@@ -68,6 +97,7 @@ void thread_exit (void);
 
 //Scheduling:
 void thread_tick(void);
+void set_thread_running(struct thread *);
 
 
 

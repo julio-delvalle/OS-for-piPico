@@ -1,6 +1,9 @@
-CMakeFiles\main.dir\threads\thread.c.obj: \
- C:\RaspberryPiPico\pico-projects\threads\thread.c \
- c:\raspberrypipico\pico-projects\threads\thread.h \
+CMakeFiles\main.dir\lib\synch.c.obj: \
+ C:\RaspberryPiPico\pico-projects\lib\synch.c \
+ c:\raspberrypipico\pico-projects\lib\synch.h \
+ c:\raspberrypipico\pico-projects\misc\list.h \
+ c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdbool.h \
+ c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stddef.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdint.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\stdint.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\machine\_default_types.h \
@@ -8,18 +11,11 @@ CMakeFiles\main.dir\threads\thread.c.obj: \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\_newlib_version.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\_intsup.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\_stdint.h \
- c:\raspberrypipico\pico-projects\misc\list.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdbool.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stddef.h \
- c:\raspberrypipico\pico-projects\lib\debug.h \
- c:\raspberrypipico\pico-projects\lib\switch.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\inttypes.h \
+ c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\stdio.h \
+ c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\_ansi.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\newlib.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\config.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\machine\ieeefp.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\_ansi.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\_locale.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\stdio.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\cdefs.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdarg.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\reent.h \
@@ -40,9 +36,10 @@ CMakeFiles\main.dir\threads\thread.c.obj: \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\machine\types.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\stdio.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\string.h \
+ c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\_locale.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\strings.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\sys\string.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\stdlib.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\machine\stdlib.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\alloca.h \
- c:\raspberrypipico\pico-projects\misc\timer.h
+ c:\raspberrypipico\pico-projects\lib\interrupt.h \
+ c:\raspberrypipico\pico-projects\lib\debug.h \
+ c:\raspberrypipico\pico-projects\threads\thread.h \
+ c:\raspberrypipico\pico-projects\misc\list.h
