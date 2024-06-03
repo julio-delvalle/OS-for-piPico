@@ -61,7 +61,7 @@ int main(){
     int count = 0;
     char nombre[] = "hola";
 
-    while(1){
+    //while(1){
 
         // ============== LLAMAR TESTS, VER INIT.C EN PINTOS =============
         gpio_put(25,1);
@@ -82,7 +82,7 @@ int main(){
         gpio_put(25,0);
         sleep_ms(1000);
         thread_yield();
-    }
+    //}
 }
 
 

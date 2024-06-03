@@ -68,7 +68,9 @@ static long long idle_ticks;    /* # of timer ticks spent idle. */
 static long long kernel_ticks;  /* # of timer ticks in kernel threads. */
 static long long user_ticks;    /* # of timer ticks in user programs. */
 
+
 #define TIME_SLICE 4            /* # of timer ticks to give each thread. */
+static unsigned round_robin_ticks = 4;
 static unsigned thread_ticks;   /* # of timer ticks since last yield. */
 
 static struct thread *next_thread_to_run (void);
@@ -410,7 +412,7 @@ thread_tick (void)
     kernel_ticks++;
 
   /* Enforce preemption. */
-  if (++thread_ticks >= TIME_SLICE)
+  if (++thread_ticks >= round_robin_ticks)
     intr_yield_on_return ();
 }
 

@@ -79,6 +79,7 @@ struct thread
     //struct list waiting_for_locks_list; /* Lista de los locks que está esperando/a los que les donó. */
 
 
+    int duration; //Cuánto debe durar ejecutándose.
     struct thread_register_save register_save;
 
     /* Owned by thread.c. */
