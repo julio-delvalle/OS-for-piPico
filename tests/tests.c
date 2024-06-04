@@ -13,10 +13,12 @@ const struct test tests[] =
     {"round-robin-1tick", test_round_robin_1tick},
     {"fifo-random-duration", test_fifo_random_duration},
     {"round-robin-random-duration", test_round_robin_random_duration},
+    {"fifo-delayed-create", test_fifo_delayed_create},
     {"round-robin-delayed-create", test_round_robin_delayed_create},
     {"sleep-single", test_sleep_single},
     {"sleep-multiple-fifo", test_sleep_multiple_fifo},
     {"sleep-multiple-rr", test_sleep_multiple_rr},
+    {"sleep-negative", test_sleep_negative},
     {"temp-test", test_temp_test},
   };
 

@@ -495,7 +495,7 @@ void insertar_en_lista_espera(int ticks){
 
   //Deshabilitar interrupciones
   //enum intr_level old_level;
-  int32_t old_level = save_and_disable_interrupts();
+  //int32_t old_level = save_and_disable_interrupts();
 
   //Quitar del ready_list e insertar a lista_espera. Cambiar a THREAD_BLOCKED y definir tiempo:
   struct thread *thread_actual = thread_current();
@@ -507,7 +507,7 @@ void insertar_en_lista_espera(int ticks){
   thread_block();
 
   //Volver a activar interrupciones
-  restore_interrupts(old_level);
+  //restore_interrupts(old_level);
 }
 
 void thread_sleep (int ticks)
@@ -522,6 +522,8 @@ void thread_sleep (int ticks)
     printf("SLEEP thread %s - %d ticks.\n",thread_current()->name, ticks);
     //Si es negativo, no lo pone en espera. Esto por test alarm-negative
     insertar_en_lista_espera(ticks);
+  }else{
+    printf("Sleep negativo! No se va a dormir.\n");
   }
 }
 
@@ -548,6 +550,10 @@ void remover_thread_durmiente(int ticks){
   }
 }
 
+
+bool is_ready_list_empty(){
+  return list_empty(&ready_list);
+}
 
 
 

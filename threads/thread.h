@@ -100,6 +100,7 @@ void set_thread_running(struct thread *);
 void insertar_en_lista_espera(int ticks);
 void remover_thread_durmiente(int ticks);
 void thread_sleep (int ticks);
+bool is_ready_list_empty(void);
 
 
 typedef void thread_func (void *aux);//puntero a función que va a ejecutar el thread.

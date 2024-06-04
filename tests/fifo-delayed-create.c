@@ -9,7 +9,7 @@ static int count = 0;
 static char nombre[] = "thread";
 
 
-int64_t rr_thread_create_alarm_callback(alarm_id_t id, void *user_data) { 
+int64_t fifo_thread_create_alarm_callback(alarm_id_t id, void *user_data) { 
     printf("\n====================================\n\nTimer fired! Create thread %d\n", count); 
     sprintf(nombre, "thread%d", count);
     thread_create(nombre, NULL, NULL, 20);
@@ -20,12 +20,12 @@ int64_t rr_thread_create_alarm_callback(alarm_id_t id, void *user_data) {
 }
 
 void
-test_round_robin_delayed_create (void) 
+test_fifo_delayed_create (void) 
 {
     gpio_put(25,1);
     sleep_ms(1000);
 
-    schedule_set_quantum(1,4);
+    schedule_set_quantum(0,4);
 
     //schedule_set_quantum(1,5); //round robin mode, con cambios cada 5
 
@@ -38,7 +38,7 @@ test_round_robin_delayed_create (void)
         thread_create(nombre, NULL, NULL, 10);
     }
 
-     add_alarm_in_ms(6543, rr_thread_create_alarm_callback, NULL, false);
+     add_alarm_in_ms(6543, fifo_thread_create_alarm_callback, NULL, false);
 
     
 

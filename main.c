@@ -49,7 +49,7 @@ void after_interrupt(void){
     if (thread_current()->duration_ticks <= 0){
         printf("thread_ticks: %d ; duration left %d\n",thread_ticks, thread_current()->duration_ticks);
         thread_exit();
-    }else if(round_robin_mode){ // Si está habilitado round_robin, cambiar al TIME_SLICE
+    }else if(round_robin_mode && !is_ready_list_empty()){ // Si está habilitado round_robin, cambiar al TIME_SLICE
     /* Enforce preemption. */
         if (thread_ticks >= round_robin_ticks){
             //printf("HACER YIELD!\n");

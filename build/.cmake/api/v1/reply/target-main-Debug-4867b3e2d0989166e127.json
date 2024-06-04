@@ -41,7 +41,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 36,
+				"line" : 38,
 				"parent" : 0
 			},
 			{
@@ -62,7 +62,7 @@
 			{
 				"command" : 6,
 				"file" : 0,
-				"line" : 41,
+				"line" : 43,
 				"parent" : 0
 			},
 			{
@@ -452,8 +452,8 @@
 				23,
 				24,
 				25,
+				26,
 				27,
-				28,
 				29,
 				30,
 				31,
@@ -468,17 +468,19 @@
 				40,
 				41,
 				42,
+				43,
 				44,
-				45,
+				46,
 				47,
-				50,
-				51,
-				55,
-				56,
+				49,
+				52,
+				53,
+				57,
 				58,
-				62,
-				63,
-				64
+				60,
+				64,
+				65,
+				66
 			]
 		},
 		{
@@ -806,17 +808,17 @@
 			"sourceIndexes" : 
 			[
 				5,
-				26,
-				43,
-				46,
+				28,
+				45,
 				48,
-				49,
-				52,
-				53,
+				50,
+				51,
 				54,
-				57,
+				55,
+				56,
 				59,
-				60
+				61,
+				62
 			]
 		},
 		{
@@ -1159,7 +1161,7 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
-				61
+				63
 			]
 		}
 	],
@@ -2048,8 +2050,8 @@
 				23,
 				24,
 				25,
+				26,
 				27,
-				28,
 				29,
 				30,
 				31,
@@ -2064,18 +2066,20 @@
 				40,
 				41,
 				42,
+				43,
 				44,
-				45,
+				46,
 				47,
-				50,
-				51,
-				55,
-				56,
+				49,
+				52,
+				53,
+				57,
 				58,
-				61,
-				62,
+				60,
 				63,
-				64
+				64,
+				65,
+				66
 			]
 		},
 		{
@@ -2083,17 +2087,17 @@
 			"sourceIndexes" : 
 			[
 				5,
-				26,
-				43,
-				46,
+				28,
+				45,
 				48,
-				49,
-				52,
-				53,
+				50,
+				51,
 				54,
-				57,
+				55,
+				56,
 				59,
-				60
+				61,
+				62
 			]
 		}
 	],
@@ -2192,6 +2196,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "tests/fifo-delayed-create.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "tests/round-robin-delayed-create.c",
 			"sourceGroupIndex" : 0
 		},
@@ -2211,6 +2221,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "tests/sleep-multiple-rr.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "tests/sleep-negative.c",
 			"sourceGroupIndex" : 0
 		},
 		{

@@ -1252,6 +1252,30 @@ misc\timer.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\misc\timer.c.s
 .PHONY : misc\timer.c.s
 
+tests\fifo-delayed-create.obj: tests\fifo-delayed-create.c.obj
+.PHONY : tests\fifo-delayed-create.obj
+
+# target to build an object file
+tests\fifo-delayed-create.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-delayed-create.c.obj
+.PHONY : tests\fifo-delayed-create.c.obj
+
+tests\fifo-delayed-create.i: tests\fifo-delayed-create.c.i
+.PHONY : tests\fifo-delayed-create.i
+
+# target to preprocess a source file
+tests\fifo-delayed-create.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-delayed-create.c.i
+.PHONY : tests\fifo-delayed-create.c.i
+
+tests\fifo-delayed-create.s: tests\fifo-delayed-create.c.s
+.PHONY : tests\fifo-delayed-create.s
+
+# target to generate assembly for a file
+tests\fifo-delayed-create.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-delayed-create.c.s
+.PHONY : tests\fifo-delayed-create.c.s
+
 tests\fifo-random-duration.obj: tests\fifo-random-duration.c.obj
 .PHONY : tests\fifo-random-duration.obj
 
@@ -1467,6 +1491,30 @@ tests\sleep-multiple-rr.s: tests\sleep-multiple-rr.c.s
 tests\sleep-multiple-rr.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-multiple-rr.c.s
 .PHONY : tests\sleep-multiple-rr.c.s
+
+tests\sleep-negative.obj: tests\sleep-negative.c.obj
+.PHONY : tests\sleep-negative.obj
+
+# target to build an object file
+tests\sleep-negative.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-negative.c.obj
+.PHONY : tests\sleep-negative.c.obj
+
+tests\sleep-negative.i: tests\sleep-negative.c.i
+.PHONY : tests\sleep-negative.i
+
+# target to preprocess a source file
+tests\sleep-negative.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-negative.c.i
+.PHONY : tests\sleep-negative.c.i
+
+tests\sleep-negative.s: tests\sleep-negative.c.s
+.PHONY : tests\sleep-negative.s
+
+# target to generate assembly for a file
+tests\sleep-negative.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-negative.c.s
+.PHONY : tests\sleep-negative.c.s
 
 tests\sleep-single.obj: tests\sleep-single.c.obj
 .PHONY : tests\sleep-single.obj
@@ -1711,6 +1759,9 @@ help:
 	@echo ... misc/timer.obj
 	@echo ... misc/timer.i
 	@echo ... misc/timer.s
+	@echo ... tests/fifo-delayed-create.obj
+	@echo ... tests/fifo-delayed-create.i
+	@echo ... tests/fifo-delayed-create.s
 	@echo ... tests/fifo-random-duration.obj
 	@echo ... tests/fifo-random-duration.i
 	@echo ... tests/fifo-random-duration.s
@@ -1738,6 +1789,9 @@ help:
 	@echo ... tests/sleep-multiple-rr.obj
 	@echo ... tests/sleep-multiple-rr.i
 	@echo ... tests/sleep-multiple-rr.s
+	@echo ... tests/sleep-negative.obj
+	@echo ... tests/sleep-negative.i
+	@echo ... tests/sleep-negative.s
 	@echo ... tests/sleep-single.obj
 	@echo ... tests/sleep-single.i
 	@echo ... tests/sleep-single.s

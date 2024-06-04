@@ -26,10 +26,12 @@ add_executable(main
     tests/round-robin-1tick.c
     tests/fifo-random-duration.c
     tests/round-robin-random-duration.c
+    tests/fifo-delayed-create.c
     tests/round-robin-delayed-create.c
     tests/sleep-single.c
     tests/sleep-multiple-fifo.c
     tests/sleep-multiple-rr.c
+    tests/sleep-negative.c
     tests/temp-test.c
 )
 
