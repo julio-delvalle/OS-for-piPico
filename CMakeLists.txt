@@ -34,7 +34,8 @@ add_executable(main
     tests/sleep-negative.c
     tests/fifo-force-exit.c
     tests/round-robin-force-exit.c
-    tests/temp-test.c
+    tests/manual-set-round-robin.c
+    #tests/temp-test.c
 )
 
 target_link_libraries(main pico_stdlib hardware_sync)

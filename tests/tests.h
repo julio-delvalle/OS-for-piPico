@@ -28,7 +28,8 @@ extern test_func test_sleep_multiple_rr;
 extern test_func test_sleep_negative;
 extern test_func test_fifo_force_exit;
 extern test_func test_round_robin_force_exit;
-extern test_func test_temp_test;
+extern test_func test_manual_set_round_robin;
+//extern test_func test_temp_test;
 
 int getNumberOfTests(void);
 void set_thread_exit_on_return();

@@ -10,13 +10,13 @@ static char nombre[] = "thread";
 
 
 int64_t rr_thread_create_alarm_callback(alarm_id_t id, void *user_data) { 
-    printf("\n====================================\n\nTimer fired! Create thread %d\n", count); 
+    printf("\n====================================\n\nINTERRUPT! Create thread %d\n", count); 
     sprintf(nombre, "thread%d", count);
-    thread_create(nombre, NULL, NULL, 20);
+    thread_create(nombre, NULL, NULL, 10);
     print_lists();
     count++;
     printf("\n====================================\n");
-    return 65432*100;
+    return 98765*100;
 }
 
 void
@@ -38,7 +38,7 @@ test_round_robin_delayed_create (void)
         thread_create(nombre, NULL, NULL, 10);
     }
 
-     add_alarm_in_ms(6543, rr_thread_create_alarm_callback, NULL, false);
+     add_alarm_in_ms(9876, rr_thread_create_alarm_callback, NULL, false);
 
     
 

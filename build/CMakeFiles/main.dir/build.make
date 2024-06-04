@@ -379,19 +379,19 @@ CMakeFiles\main.dir\tests\round-robin-force-exit.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/main.dir/tests/round-robin-force-exit.c.s"
 	"C:\PROGRA~2\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\RaspberryPiPico\pico-projects\tests\round-robin-force-exit.c -o CMakeFiles\main.dir\tests\round-robin-force-exit.c.s
 
-CMakeFiles\main.dir\tests\temp-test.c.obj: CMakeFiles\main.dir\flags.make
-CMakeFiles\main.dir\tests\temp-test.c.obj: C:\RaspberryPiPico\pico-projects\tests\temp-test.c
-CMakeFiles\main.dir\tests\temp-test.c.obj: CMakeFiles\main.dir\compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\RaspberryPiPico\pico-projects\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/main.dir/tests/temp-test.c.obj"
-	"C:\PROGRA~2\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\main.dir\tests\temp-test.c.obj -MF CMakeFiles\main.dir\tests\temp-test.c.obj.d -o CMakeFiles\main.dir\tests\temp-test.c.obj -c C:\RaspberryPiPico\pico-projects\tests\temp-test.c
+CMakeFiles\main.dir\tests\manual-set-round-robin.c.obj: CMakeFiles\main.dir\flags.make
+CMakeFiles\main.dir\tests\manual-set-round-robin.c.obj: C:\RaspberryPiPico\pico-projects\tests\manual-set-round-robin.c
+CMakeFiles\main.dir\tests\manual-set-round-robin.c.obj: CMakeFiles\main.dir\compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\RaspberryPiPico\pico-projects\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building C object CMakeFiles/main.dir/tests/manual-set-round-robin.c.obj"
+	"C:\PROGRA~2\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles\main.dir\tests\manual-set-round-robin.c.obj -MF CMakeFiles\main.dir\tests\manual-set-round-robin.c.obj.d -o CMakeFiles\main.dir\tests\manual-set-round-robin.c.obj -c C:\RaspberryPiPico\pico-projects\tests\manual-set-round-robin.c
 
-CMakeFiles\main.dir\tests\temp-test.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/main.dir/tests/temp-test.c.i"
-	"C:\PROGRA~2\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\RaspberryPiPico\pico-projects\tests\temp-test.c > CMakeFiles\main.dir\tests\temp-test.c.i
+CMakeFiles\main.dir\tests\manual-set-round-robin.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/main.dir/tests/manual-set-round-robin.c.i"
+	"C:\PROGRA~2\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\RaspberryPiPico\pico-projects\tests\manual-set-round-robin.c > CMakeFiles\main.dir\tests\manual-set-round-robin.c.i
 
-CMakeFiles\main.dir\tests\temp-test.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/main.dir/tests/temp-test.c.s"
-	"C:\PROGRA~2\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\RaspberryPiPico\pico-projects\tests\temp-test.c -o CMakeFiles\main.dir\tests\temp-test.c.s
+CMakeFiles\main.dir\tests\manual-set-round-robin.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/main.dir/tests/manual-set-round-robin.c.s"
+	"C:\PROGRA~2\GNU Arm Embedded Toolchain\10 2021.10\bin\arm-none-eabi-gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\RaspberryPiPico\pico-projects\tests\manual-set-round-robin.c -o CMakeFiles\main.dir\tests\manual-set-round-robin.c.s
 
 CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\pico_stdlib\stdlib.c.obj: CMakeFiles\main.dir\flags.make
 CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\pico_stdlib\stdlib.c.obj: C:\RaspberryPiPico\pico-sdk\src\rp2_common\pico_stdlib\stdlib.c
@@ -1037,7 +1037,7 @@ main_OBJECTS = \
 "CMakeFiles\main.dir\tests\sleep-negative.c.obj" \
 "CMakeFiles\main.dir\tests\fifo-force-exit.c.obj" \
 "CMakeFiles\main.dir\tests\round-robin-force-exit.c.obj" \
-"CMakeFiles\main.dir\tests\temp-test.c.obj" \
+"CMakeFiles\main.dir\tests\manual-set-round-robin.c.obj" \
 "CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\pico_stdlib\stdlib.c.obj" \
 "CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\hardware_gpio\gpio.c.obj" \
 "CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\pico_platform\platform.c.obj" \
@@ -1110,7 +1110,7 @@ main.elf: CMakeFiles\main.dir\tests\sleep-multiple-rr.c.obj
 main.elf: CMakeFiles\main.dir\tests\sleep-negative.c.obj
 main.elf: CMakeFiles\main.dir\tests\fifo-force-exit.c.obj
 main.elf: CMakeFiles\main.dir\tests\round-robin-force-exit.c.obj
-main.elf: CMakeFiles\main.dir\tests\temp-test.c.obj
+main.elf: CMakeFiles\main.dir\tests\manual-set-round-robin.c.obj
 main.elf: CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\pico_stdlib\stdlib.c.obj
 main.elf: CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\hardware_gpio\gpio.c.obj
 main.elf: CMakeFiles\main.dir\C_\RaspberryPiPico\pico-sdk\src\rp2_common\pico_platform\platform.c.obj

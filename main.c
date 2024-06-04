@@ -9,7 +9,7 @@
 
 
 //Para scheduling 
-static int round_robin_mode = 1; // 0 es FIFO, 1 es round_robin.
+static int round_robin_mode = 0; // 0 es FIFO, 1 es round_robin.
 #define TIME_SLICE 45            /* # of timer ticks to give each thread. */
 static unsigned round_robin_ticks = 5;
 extern int thread_exit_on_return;
@@ -96,7 +96,6 @@ int main(){
     print_test_names();
 
     int numberOfTests = getNumberOfTests();
-    printf("NUMBER: %d",numberOfTests);
 
     char userInput[5];
     printf("test: ");
@@ -115,6 +114,22 @@ int main(){
 
     if((testSelected <= numberOfTests) && testSelected > 0){
         testSelected--;
+
+        if(testSelected == 14){
+            printf("Ingrese ciclos para round robin (>0): ");
+            scanf("%s", &userInput);
+
+            int rrCountSelected = atoi(userInput);
+            while(testSelected <= 0){
+                printf("Debe ser mayor a 0. Ingrese ciclos para round robin: ");
+                scanf("%s", &userInput);
+                rrCountSelected = atoi(userInput);
+            }
+
+            printf("--------------------Configurando round robin para %d ciclos.\n--------------------\n",rrCountSelected);
+            schedule_set_quantum(1, rrCountSelected);
+        }
+
         thread_init();
         //palloc_init (20); /// NO FUNCIONA, DA HARDFAULT.
         thread_start();

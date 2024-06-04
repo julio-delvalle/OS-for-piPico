@@ -22,7 +22,8 @@ const struct test tests[] =
     {"sleep-negative", test_sleep_negative},
     {"fifo-force-exit", test_fifo_force_exit},
     {"round-robin-force-exit", test_round_robin_force_exit},
-    {"temp-test", test_temp_test},
+    {"manual-set-round-robin", test_manual_set_round_robin},
+    //{"temp-test", test_temp_test},
   };
 
 

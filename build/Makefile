@@ -1372,6 +1372,30 @@ tests\hello-world.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\hello-world.c.s
 .PHONY : tests\hello-world.c.s
 
+tests\manual-set-round-robin.obj: tests\manual-set-round-robin.c.obj
+.PHONY : tests\manual-set-round-robin.obj
+
+# target to build an object file
+tests\manual-set-round-robin.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\manual-set-round-robin.c.obj
+.PHONY : tests\manual-set-round-robin.c.obj
+
+tests\manual-set-round-robin.i: tests\manual-set-round-robin.c.i
+.PHONY : tests\manual-set-round-robin.i
+
+# target to preprocess a source file
+tests\manual-set-round-robin.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\manual-set-round-robin.c.i
+.PHONY : tests\manual-set-round-robin.c.i
+
+tests\manual-set-round-robin.s: tests\manual-set-round-robin.c.s
+.PHONY : tests\manual-set-round-robin.s
+
+# target to generate assembly for a file
+tests\manual-set-round-robin.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\manual-set-round-robin.c.s
+.PHONY : tests\manual-set-round-robin.c.s
+
 tests\round-robin-1tick.obj: tests\round-robin-1tick.c.obj
 .PHONY : tests\round-robin-1tick.obj
 
@@ -1588,30 +1612,6 @@ tests\sleep-single.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-single.c.s
 .PHONY : tests\sleep-single.c.s
 
-tests\temp-test.obj: tests\temp-test.c.obj
-.PHONY : tests\temp-test.obj
-
-# target to build an object file
-tests\temp-test.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\temp-test.c.obj
-.PHONY : tests\temp-test.c.obj
-
-tests\temp-test.i: tests\temp-test.c.i
-.PHONY : tests\temp-test.i
-
-# target to preprocess a source file
-tests\temp-test.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\temp-test.c.i
-.PHONY : tests\temp-test.c.i
-
-tests\temp-test.s: tests\temp-test.c.s
-.PHONY : tests\temp-test.s
-
-# target to generate assembly for a file
-tests\temp-test.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\temp-test.c.s
-.PHONY : tests\temp-test.c.s
-
 tests\tests.obj: tests\tests.c.obj
 .PHONY : tests\tests.obj
 
@@ -1822,6 +1822,9 @@ help:
 	@echo ... tests/hello-world.obj
 	@echo ... tests/hello-world.i
 	@echo ... tests/hello-world.s
+	@echo ... tests/manual-set-round-robin.obj
+	@echo ... tests/manual-set-round-robin.i
+	@echo ... tests/manual-set-round-robin.s
 	@echo ... tests/round-robin-1tick.obj
 	@echo ... tests/round-robin-1tick.i
 	@echo ... tests/round-robin-1tick.s
@@ -1849,9 +1852,6 @@ help:
 	@echo ... tests/sleep-single.obj
 	@echo ... tests/sleep-single.i
 	@echo ... tests/sleep-single.s
-	@echo ... tests/temp-test.obj
-	@echo ... tests/temp-test.i
-	@echo ... tests/temp-test.s
 	@echo ... tests/tests.obj
 	@echo ... tests/tests.i
 	@echo ... tests/tests.s
