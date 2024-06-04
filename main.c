@@ -4,6 +4,7 @@
 #include "lib/debug.h"
 #include "misc/timer.h"
 #include "lib/palloc.h"
+#include "tests/tests.h"
 
 
 
@@ -11,6 +12,7 @@
 //PARA TIMER:
 /* Number of timer ticks since OS booted. */
 int ticks = 0;
+extern unsigned thread_ticks;
 /* Timer interrupt handler. */
 bool timer_interrupt (struct repeating_timer *t)
 {
@@ -19,17 +21,14 @@ bool timer_interrupt (struct repeating_timer *t)
     if(ticks%5 == 0){ // cada 5 ticks imprimir.
         printf("Se está ejecutando thread %s\n",thread_current()->name);
     }
+    //block_if_idle_thread();
 
     remover_thread_durmiente(ticks);
-}
 
-
-
-
-void hello_world(void *t);
-
-void hello_world(void* t){
-    printf("Hello World from thread!\n");
+    if (thread_current()->duration_ticks <= 0){
+    printf("thread_ticks: %d ; duration left %d\n",thread_ticks, thread_current()->duration_ticks);
+    thread_exit();
+  }
 }
 
 
@@ -42,8 +41,18 @@ int main(){
     gpio_init(25);
     gpio_set_dir(25, GPIO_OUT);
 
-    printf("INICIANDO\n");
+    printf("=================INICIANDO=================\n");
+
+    printf("Elija un test a ejecutar:\n");
+    print_test_names();
+
+    char userInput[5];
+    printf("test: ");
+    scanf("%s", &userInput);
     
+
+    printf("Se seleccionó el test %s\n\n",userInput);
+
 
     thread_init();
     //palloc_init (20); /// NO FUNCIONA, DA HARDFAULT.
@@ -51,7 +60,7 @@ int main(){
 
     //TIMER:
     struct repeating_timer timer;
-    add_repeating_timer_ms(200, timer_interrupt, NULL, &timer); //TIMER 100 Hz = 10ms
+    add_repeating_timer_ms(500, timer_interrupt, NULL, &timer); //TIMER 100 Hz = 10ms
 
 
     struct thread *current = thread_current();
@@ -60,35 +69,26 @@ int main(){
     print_all_list();
 
 
+    //Después de start, ya se creó idle. Pasarse a idle.
+    thread_yield();
+
+
     ASSERT (1 < 2); //prueba de ASSERT. Si este falla fallarán todos los de adentro.
 
-    int count = 0;
-    char nombre[] = "hola";
+    
 
+
+
+    run_test("temp-test");
+    
     while(1){
-
-        // ============== LLAMAR TESTS, VER INIT.C EN PINTOS =============
         gpio_put(25,1);
-        sleep_ms(5000);
-
-        if(count < 5){
-            sprintf(nombre, "hola%d", count);
-            count++; 
-            thread_create(nombre, hello_world, NULL, 10);
-        }else{
-            thread_exit();
-        }
-        printf("ALL: ");
-        print_all_list();
-        printf("READY: ");
-        print_ready_list();
-        printf("BLOCKED: ");
-        print_blocked_list();
-        printf("ticks: %d\n",timer_ticks());
+        sleep_ms(1000);
         gpio_put(25,0);
         sleep_ms(1000);
-        //thread_yield();
     }
+
+    thread_exit();  // NUNCA SE DEBERÍA LLEGAR AQuí
 }
 
 

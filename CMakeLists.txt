@@ -17,6 +17,11 @@ add_executable(main
     #lib/interrupt.c
     #lib/synch.c
     lib/palloc.c
+    tests/tests.c
+    
+    #listado de tests
+    tests/alarm-negative.c
+    tests/temp-test.c
 )
 
 target_link_libraries(main pico_stdlib)

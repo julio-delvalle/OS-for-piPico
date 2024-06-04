@@ -2,7 +2,8 @@
     "files.associations": {
         "thread.h": "c",
         "limits.h": "c",
-        "thread": "c"
+        "thread": "c",
+        "debug.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": true
 }

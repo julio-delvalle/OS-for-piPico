@@ -22,10 +22,6 @@ typedef int tid_t;
 //#define PRI_MAX 63                      /* Highest priority. */
 
 
-/* Scheduling POR EL MOMENTO ROUND ROBIN< CON 4 ticks */
-#define TIME_SLICE 4            /* # of timer ticks to give each thread. */
-static unsigned thread_ticks;   /* # of timer ticks since last yield. */
-
 
 
 enum thread_status
@@ -99,6 +95,7 @@ void thread_exit (void);
 
 //Scheduling:
 void thread_tick(void);
+void block_if_idle_thread(void);
 void set_thread_running(struct thread *);
 void insertar_en_lista_espera(int ticks);
 void remover_thread_durmiente(int ticks);

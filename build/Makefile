@@ -1252,6 +1252,78 @@ misc\timer.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\misc\timer.c.s
 .PHONY : misc\timer.c.s
 
+tests\alarm-negative.obj: tests\alarm-negative.c.obj
+.PHONY : tests\alarm-negative.obj
+
+# target to build an object file
+tests\alarm-negative.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\alarm-negative.c.obj
+.PHONY : tests\alarm-negative.c.obj
+
+tests\alarm-negative.i: tests\alarm-negative.c.i
+.PHONY : tests\alarm-negative.i
+
+# target to preprocess a source file
+tests\alarm-negative.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\alarm-negative.c.i
+.PHONY : tests\alarm-negative.c.i
+
+tests\alarm-negative.s: tests\alarm-negative.c.s
+.PHONY : tests\alarm-negative.s
+
+# target to generate assembly for a file
+tests\alarm-negative.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\alarm-negative.c.s
+.PHONY : tests\alarm-negative.c.s
+
+tests\temp-test.obj: tests\temp-test.c.obj
+.PHONY : tests\temp-test.obj
+
+# target to build an object file
+tests\temp-test.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\temp-test.c.obj
+.PHONY : tests\temp-test.c.obj
+
+tests\temp-test.i: tests\temp-test.c.i
+.PHONY : tests\temp-test.i
+
+# target to preprocess a source file
+tests\temp-test.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\temp-test.c.i
+.PHONY : tests\temp-test.c.i
+
+tests\temp-test.s: tests\temp-test.c.s
+.PHONY : tests\temp-test.s
+
+# target to generate assembly for a file
+tests\temp-test.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\temp-test.c.s
+.PHONY : tests\temp-test.c.s
+
+tests\tests.obj: tests\tests.c.obj
+.PHONY : tests\tests.obj
+
+# target to build an object file
+tests\tests.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\tests.c.obj
+.PHONY : tests\tests.c.obj
+
+tests\tests.i: tests\tests.c.i
+.PHONY : tests\tests.i
+
+# target to preprocess a source file
+tests\tests.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\tests.c.i
+.PHONY : tests\tests.c.i
+
+tests\tests.s: tests\tests.c.s
+.PHONY : tests\tests.s
+
+# target to generate assembly for a file
+tests\tests.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\tests.c.s
+.PHONY : tests\tests.c.s
+
 threads\thread.obj: threads\thread.c.obj
 .PHONY : threads\thread.obj
 
@@ -1423,6 +1495,15 @@ help:
 	@echo ... misc/timer.obj
 	@echo ... misc/timer.i
 	@echo ... misc/timer.s
+	@echo ... tests/alarm-negative.obj
+	@echo ... tests/alarm-negative.i
+	@echo ... tests/alarm-negative.s
+	@echo ... tests/temp-test.obj
+	@echo ... tests/temp-test.i
+	@echo ... tests/temp-test.s
+	@echo ... tests/tests.obj
+	@echo ... tests/tests.i
+	@echo ... tests/tests.s
 	@echo ... threads/thread.obj
 	@echo ... threads/thread.i
 	@echo ... threads/thread.s

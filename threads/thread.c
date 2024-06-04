@@ -13,6 +13,8 @@ static struct thread *running_thread (void);
 static struct thread *running_thread_init (void);
 static tid_t allocate_tid (void);
 
+static int round_robin_mode = 0; // 0 es FIFO, 1 es round_robin.
+
 
 //THREADS IMPORTANTES
 struct thread *thread_running_var;
@@ -69,9 +71,11 @@ static long long idle_ticks;    /* # of timer ticks spent idle. */
 static long long kernel_ticks;  /* # of timer ticks in kernel threads. */
 static long long user_ticks;    /* # of timer ticks in user programs. */
 
-#define TIME_SLICE 4            /* # of timer ticks to give each thread. */
+//Para scheduling 
+#define TIME_SLICE 45            /* # of timer ticks to give each thread. */
 static unsigned round_robin_ticks;
-static unsigned thread_ticks;   /* # of timer ticks since last yield. */
+unsigned thread_ticks;   /* # of timer ticks since last yield. */
+
 
 static struct thread *next_thread_to_run (void);
 static void schedule (void);
@@ -298,6 +302,7 @@ thread_create (const char *name,
     idle_thread = t;
   }
 
+  block_if_idle_thread();
   //printf("Thread create con tid %d.\n",tid);
   return tid;
 }
@@ -321,10 +326,16 @@ thread_block (void)
 {
   //ASSERT (!intr_context ());
   //ASSERT (intr_get_level () == INTR_OFF);
+
+  
+   int32_t old_level = save_and_disable_interrupts();
+
   printf("Se va a bloquear thread %s\n",thread_current()->name);
 
   thread_current ()->status = THREAD_BLOCKED;
   schedule ();
+
+  restore_interrupts(old_level);
 }
 
 /* Yields the CPU.  The current thread is not put to sleep and
@@ -417,9 +428,25 @@ thread_tick (void)
   else
     kernel_ticks++;
 
-  /* Enforce preemption. */
-  if (++thread_ticks >= TIME_SLICE)
-    intr_yield_on_return ();
+
+  thread_ticks++;
+
+  if(round_robin_mode){ // Si está habilitado round_robin, cambiar al TIME_SLICE
+    /* Enforce preemption. */
+    if (++thread_ticks >= TIME_SLICE)
+      printf("HACER YIELD!\n");
+
+      //thread_yield_on_return();
+  }
+
+  t->duration_ticks--;
+  
+}
+
+void block_if_idle_thread(void){
+  if(thread_current() == idle_thread){
+    thread_block();
+  }
 }
 
 /* Chooses and returns the next thread to be scheduled.  Should

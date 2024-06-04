@@ -146,6 +146,9 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/RaspberryPiPico/pico-projects/main.c" "CMakeFiles/main.dir/main.c.obj" "gcc" "CMakeFiles/main.dir/main.c.obj.d"
   "C:/RaspberryPiPico/pico-projects/misc/list.c" "CMakeFiles/main.dir/misc/list.c.obj" "gcc" "CMakeFiles/main.dir/misc/list.c.obj.d"
   "C:/RaspberryPiPico/pico-projects/misc/timer.c" "CMakeFiles/main.dir/misc/timer.c.obj" "gcc" "CMakeFiles/main.dir/misc/timer.c.obj.d"
+  "C:/RaspberryPiPico/pico-projects/tests/alarm-negative.c" "CMakeFiles/main.dir/tests/alarm-negative.c.obj" "gcc" "CMakeFiles/main.dir/tests/alarm-negative.c.obj.d"
+  "C:/RaspberryPiPico/pico-projects/tests/temp-test.c" "CMakeFiles/main.dir/tests/temp-test.c.obj" "gcc" "CMakeFiles/main.dir/tests/temp-test.c.obj.d"
+  "C:/RaspberryPiPico/pico-projects/tests/tests.c" "CMakeFiles/main.dir/tests/tests.c.obj" "gcc" "CMakeFiles/main.dir/tests/tests.c.obj.d"
   "C:/RaspberryPiPico/pico-projects/threads/thread.c" "CMakeFiles/main.dir/threads/thread.c.obj" "gcc" "CMakeFiles/main.dir/threads/thread.c.obj.d"
   "C:/RaspberryPiPico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp" "CMakeFiles/main.dir/C_/RaspberryPiPico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj" "gcc" "CMakeFiles/main.dir/C_/RaspberryPiPico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj.d"
   )
