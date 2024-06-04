@@ -18,13 +18,13 @@ add_executable(main
     #lib/synch.c
     lib/palloc.c
     tests/tests.c
-    
+
     #listado de tests
     tests/alarm-negative.c
     tests/temp-test.c
 )
 
-target_link_libraries(main pico_stdlib)
+target_link_libraries(main pico_stdlib hardware_sync)
 
 pico_enable_stdio_usb(main 0)
 pico_enable_stdio_uart(main 1)

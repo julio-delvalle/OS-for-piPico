@@ -18,19 +18,23 @@ bool timer_interrupt (struct repeating_timer *t)
 {
     ticks++;
     thread_tick ();
-    if(ticks%5 == 0){ // cada 5 ticks imprimir.
-        printf("Se está ejecutando thread %s\n",thread_current()->name);
-    }
-    //block_if_idle_thread();
-
+    printf("Se está ejecutando thread %s, ticks %d\n",thread_current()->name, ticks);
+    
     remover_thread_durmiente(ticks);
 
-    if (thread_current()->duration_ticks <= 0){
-    printf("thread_ticks: %d ; duration left %d\n",thread_ticks, thread_current()->duration_ticks);
-    thread_exit();
-  }
+    return true;
 }
 
+
+
+void after_interrupt(){
+    block_if_idle_thread();
+
+    if (thread_current()->duration_ticks <= 0){
+        printf("thread_ticks: %d ; duration left %d\n",thread_ticks, thread_current()->duration_ticks);
+        thread_exit();
+    }
+}
 
 
 int main(){
@@ -82,10 +86,7 @@ int main(){
     run_test("temp-test");
     
     while(1){
-        gpio_put(25,1);
-        sleep_ms(1000);
-        gpio_put(25,0);
-        sleep_ms(1000);
+        after_interrupt();
     }
 
     thread_exit();  // NUNCA SE DEBERÍA LLEGAR AQuí

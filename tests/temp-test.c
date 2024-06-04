@@ -40,5 +40,10 @@ test_temp_test (void)
     print_blocked_list();
     printf("ticks: %d\n",timer_ticks());
     gpio_put(25,1);
+
+    //sleep_ms(5000);
+    for(int i=0;i<100000;i++){};
+    printf("FUERA DE FOR WAIT\n");
+    busy_wait_ms(5000);
     
 }

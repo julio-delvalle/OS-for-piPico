@@ -330,8 +330,6 @@ thread_block (void)
   
    int32_t old_level = save_and_disable_interrupts();
 
-  printf("Se va a bloquear thread %s\n",thread_current()->name);
-
   thread_current ()->status = THREAD_BLOCKED;
   schedule ();
 
@@ -486,7 +484,7 @@ thread_schedule_tail (struct thread *prev)
   //ASSERT (intr_get_level () == INTR_OFF);
 
   /* Mark us as running. */
-  // cur->status = THREAD_RUNNING;  YA LO HACE EL SWITCH_THREAD.
+  cur->status = THREAD_RUNNING;  //YA LO HACE EL SWITCH_THREAD.
 
   /* Start new time slice. */
   thread_ticks = 0;
