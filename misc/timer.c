@@ -84,8 +84,13 @@ timer_sleep (int ticks)
   int start = timer_ticks ();
 
   //ASSERT (intr_get_level () == INTR_ON);
-  while (timer_elapsed (start) < ticks) 
-    thread_yield ();
+  //while (timer_elapsed (start) < ticks) 
+  //  thread_yield ();
+
+  if(ticks > 0){
+    //Si es negativo, no lo pone en espera. Esto por test alarm-negative
+    insertar_en_lista_espera(ticks);
+  }
 }
 
 

@@ -81,6 +81,8 @@ struct thread
 
     struct thread_register_save register_save;
 
+    int duration_ticks; // Cuántos ticks debe vivir
+
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */
   };
@@ -98,17 +100,19 @@ void thread_exit (void);
 //Scheduling:
 void thread_tick(void);
 void set_thread_running(struct thread *);
-
+void insertar_en_lista_espera(int ticks);
+void remover_thread_durmiente(int ticks);
 
 
 typedef void thread_func (void *aux);//puntero a función que va a ejecutar el thread.
-tid_t thread_create (const char *name, thread_func *, void *);
+tid_t thread_create (const char *name, thread_func *, void *, int duration);
 
 
 //PRINTING PARA DEBUG:
 void print_thread_list(struct list *list);
 void print_all_list();
 void print_ready_list();
+void print_blocked_list();
 
 
 #endif /* THREAD_H */

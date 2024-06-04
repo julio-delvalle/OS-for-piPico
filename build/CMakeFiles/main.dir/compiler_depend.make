@@ -1846,9 +1846,25 @@ CMakeFiles\main.dir\misc\timer.c.obj: C:\RaspberryPiPico\pico-projects\threads\t
 
 
 CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-projects\threads\thread.c
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\boards\include\boards\pico.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\rp2_common\cmsis\include\cmsis\rename_exceptions.h
+CMakeFiles\main.dir\threads\thread.c.obj: generated\pico_base\pico\config_autogen.h
+CMakeFiles\main.dir\threads\thread.c.obj: generated\pico_base\pico\version.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include\pico.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include\pico\assert.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include\pico\config.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include\pico\error.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\common\pico_base\include\pico\types.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\rp2040\hardware_regs\include\hardware\platform_defs.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\addressmap.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\rp2040\hardware_regs\include\hardware\regs\sio.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\rp2_common\hardware_base\include\hardware\address_mapped.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\rp2_common\hardware_sync\include\hardware\sync.h
+CMakeFiles\main.dir\threads\thread.c.obj: C:\RaspberryPiPico\pico-sdk\src\rp2_common\pico_platform\include\pico\platform.h
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\_ansi.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\_newlib_version.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\alloca.h"
+CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\assert.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\inttypes.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\machine\_default_types.h"
 CMakeFiles\main.dir\threads\thread.c.obj: "C:\Program Files (x86)\GNU Arm Embedded Toolchain\10 2021.10\arm-none-eabi\include\machine\_endian.h"

@@ -6,6 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "../misc/timer.h"
+#include "hardware/sync.h"
 
 static void init_thread (struct thread *, const char *name);
 static struct thread *running_thread (void);
@@ -69,6 +70,7 @@ static long long kernel_ticks;  /* # of timer ticks in kernel threads. */
 static long long user_ticks;    /* # of timer ticks in user programs. */
 
 #define TIME_SLICE 4            /* # of timer ticks to give each thread. */
+static unsigned round_robin_ticks;
 static unsigned thread_ticks;   /* # of timer ticks since last yield. */
 
 static struct thread *next_thread_to_run (void);
@@ -222,6 +224,7 @@ init_thread (struct thread *t, const char *name)
   strlcpy (t->name, name, sizeof t->name);
   t->stack = (uint8_t *) t + PGSIZE;
   t->magic = THREAD_MAGIC;
+  t->duration_ticks = 9999999;
   //list_init(&t->locks_owned_list);
   //list_init(&t->waiting_for_locks_list);
   //list_init(&t->donations_received_list);
@@ -238,7 +241,7 @@ thread_start (void)
   /* Create the idle thread. */
   //struct semaphore idle_started;
   //sema_init (&idle_started, 0);
-  thread_create ("idle", idle, NULL);
+  thread_create ("idle", idle, NULL, 999);
 
   /* Start preemptive thread scheduling. */
   //intr_enable ();
@@ -249,7 +252,7 @@ thread_start (void)
 
 tid_t
 thread_create (const char *name,
-               thread_func *function, void *aux)
+               thread_func *function, void *aux, int duration)
 {
   struct thread *t;
   struct kernel_thread_frame *kf;
@@ -270,6 +273,7 @@ thread_create (const char *name,
   /* Initialize thread. */
   init_thread (t, name);
   tid = t->tid = allocate_tid ();
+  t->duration_ticks = duration;
 
   /* Stack frame for kernel_thread(). */
   kf = alloc_frame (t, sizeof *kf);
@@ -317,9 +321,10 @@ thread_block (void)
 {
   //ASSERT (!intr_context ());
   //ASSERT (intr_get_level () == INTR_OFF);
+  printf("Se va a bloquear thread %s\n",thread_current()->name);
 
   thread_current ()->status = THREAD_BLOCKED;
-  //schedule ();
+  schedule ();
 }
 
 /* Yields the CPU.  The current thread is not put to sleep and
@@ -327,19 +332,20 @@ thread_block (void)
 void
 thread_yield (void)
 {
-  printf("THREAD YIELD desde %s\n",thread_current()->name);
   struct thread *cur = thread_current ();
   //enum intr_level old_level;
 
   //ASSERT (!intr_context ());
 
   //old_level = intr_disable ();
-  if (cur != idle_thread)
-    list_push_back (&ready_list, &cur->elem);
-  cur->status = THREAD_READY; 
-  schedule ();
+  if(!list_empty(&ready_list)){
+      if (cur != idle_thread && cur != initial_thread)
+      list_push_back (&ready_list, &cur->elem);
+    cur->status = THREAD_READY; 
+    schedule ();
+  }
+  
 
-  printf("SALIENDO de Thread Yield desde %s\n",thread_current()->name);
   //intr_set_level (old_level);
 }
 
@@ -383,8 +389,10 @@ thread_exit (void)
     list_remove (&thread_current()->allelem);
     printf("===EXIT thread %s\n",thread_current()->name);
     thread_current ()->status = THREAD_DYING;
+    schedule();
+  }else{
+    thread_yield ();
   }
-  schedule ();
 
   //NOT_REACHED ();
 }
@@ -427,9 +435,6 @@ next_thread_to_run (void)
   else
     return list_entry (list_pop_front (&ready_list), struct thread, elem);
 }
-
-
-
 /* Completes a thread switch by activating the new thread's page
    tables, and, if the previous thread is dying, destroying it.
 
@@ -469,6 +474,46 @@ thread_schedule_tail (struct thread *prev)
       ASSERT (prev != cur);
       free (prev); // MATAR AL THREAD< THREAD_EXIT().
     }
+}
+void insertar_en_lista_espera(int ticks){
+
+  //Deshabilitar interrupciones
+  //enum intr_level old_level;
+  int32_t old_level = save_and_disable_interrupts();
+
+  //Quitar del ready_list e insertar a lista_espera. Cambiar a THREAD_BLOCKED y definir tiempo:
+  struct thread *thread_actual = thread_current();
+
+  thread_actual->sleep_time = timer_ticks() + ticks;
+  //Sleep_time se definió en la estructura antes.
+
+  list_push_back(&lista_espera, &thread_actual->elem);
+  thread_block();
+
+  //Volver a activar interrupciones
+  restore_interrupts(old_level);
+}
+
+void remover_thread_durmiente(int ticks){
+
+  //Llamada deste timer_interrupt () en timer.c
+  //cada timer interrupt verificar si ya se puede regresar el thread a ready_list:
+
+  //Iterando sobre lista_espera:
+  struct list_elem *iter = list_begin(&lista_espera);
+  while(iter != list_end(&lista_espera)){
+    struct thread *thread_lista_espera = list_entry(iter, struct thread, elem);
+
+    //Si el tiempo actual es mayor al tiempo que el thread debe estar dormido, entonces debe salir:
+    if(ticks >= thread_lista_espera->sleep_time){
+      //quitar de lista espera y agregar a ready_list:
+      iter = list_remove(iter);
+      thread_unblock(thread_lista_espera);
+    }else{
+      //que siga iterando
+      iter = list_next(iter);
+    }
+  }
 }
 
 
@@ -561,7 +606,7 @@ void print_thread_list(struct list *list){
     printf("LISTA: ");
     for (e = list_begin (list); e != list_end (list); e = list_next (e)){
         struct thread *current = list_entry(e, struct thread, elem);
-        printf("[%s (%d)] -> ",&current->name, current->tid);
+        printf("[%s] -> ",&current->name);
     }
     printf("\n");
 }
@@ -574,10 +619,13 @@ void print_all_list(){
     printf("LISTA: ");
     for (e = list_begin (&all_list); e != list_end (&all_list); e = list_next (e)){
         struct thread *current = list_entry(e, struct thread, allelem);
-        printf("[%s (%d)] -> ",&current->name, current->tid);
+        printf("[%s] -> ",&current->name);
     }
     printf("\n");
 }
 void print_ready_list(){
   print_thread_list(&ready_list);
+}
+void print_blocked_list(){
+  print_thread_list(&lista_espera);
 }

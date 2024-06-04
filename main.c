@@ -16,6 +16,11 @@ bool timer_interrupt (struct repeating_timer *t)
 {
     ticks++;
     thread_tick ();
+    if(ticks%5 == 0){ // cada 5 ticks imprimir.
+        printf("Se está ejecutando thread %s\n",thread_current()->name);
+    }
+
+    remover_thread_durmiente(ticks);
 }
 
 
@@ -46,8 +51,7 @@ int main(){
 
     //TIMER:
     struct repeating_timer timer;
-    printf("se creó timer\n");
-    add_repeating_timer_ms(10, timer_interrupt, NULL, &timer); //TIMER 100 Hz = 10ms
+    add_repeating_timer_ms(200, timer_interrupt, NULL, &timer); //TIMER 100 Hz = 10ms
 
 
     struct thread *current = thread_current();
@@ -68,9 +72,9 @@ int main(){
         sleep_ms(5000);
 
         if(count < 5){
-            //sprintf(nombre, "hola", count);
+            sprintf(nombre, "hola%d", count);
             count++; 
-            thread_create(nombre, hello_world, NULL);
+            thread_create(nombre, hello_world, NULL, 10);
         }else{
             thread_exit();
         }
@@ -78,10 +82,12 @@ int main(){
         print_all_list();
         printf("READY: ");
         print_ready_list();
+        printf("BLOCKED: ");
+        print_blocked_list();
         printf("ticks: %d\n",timer_ticks());
         gpio_put(25,0);
         sleep_ms(1000);
-        thread_yield();
+        //thread_yield();
     }
 }
 
