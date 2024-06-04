@@ -1276,6 +1276,30 @@ tests\fifo-delayed-create.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-delayed-create.c.s
 .PHONY : tests\fifo-delayed-create.c.s
 
+tests\fifo-force-exit.obj: tests\fifo-force-exit.c.obj
+.PHONY : tests\fifo-force-exit.obj
+
+# target to build an object file
+tests\fifo-force-exit.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-force-exit.c.obj
+.PHONY : tests\fifo-force-exit.c.obj
+
+tests\fifo-force-exit.i: tests\fifo-force-exit.c.i
+.PHONY : tests\fifo-force-exit.i
+
+# target to preprocess a source file
+tests\fifo-force-exit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-force-exit.c.i
+.PHONY : tests\fifo-force-exit.c.i
+
+tests\fifo-force-exit.s: tests\fifo-force-exit.c.s
+.PHONY : tests\fifo-force-exit.s
+
+# target to generate assembly for a file
+tests\fifo-force-exit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-force-exit.c.s
+.PHONY : tests\fifo-force-exit.c.s
+
 tests\fifo-random-duration.obj: tests\fifo-random-duration.c.obj
 .PHONY : tests\fifo-random-duration.obj
 
@@ -1395,6 +1419,30 @@ tests\round-robin-delayed-create.s: tests\round-robin-delayed-create.c.s
 tests\round-robin-delayed-create.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-delayed-create.c.s
 .PHONY : tests\round-robin-delayed-create.c.s
+
+tests\round-robin-force-exit.obj: tests\round-robin-force-exit.c.obj
+.PHONY : tests\round-robin-force-exit.obj
+
+# target to build an object file
+tests\round-robin-force-exit.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-force-exit.c.obj
+.PHONY : tests\round-robin-force-exit.c.obj
+
+tests\round-robin-force-exit.i: tests\round-robin-force-exit.c.i
+.PHONY : tests\round-robin-force-exit.i
+
+# target to preprocess a source file
+tests\round-robin-force-exit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-force-exit.c.i
+.PHONY : tests\round-robin-force-exit.c.i
+
+tests\round-robin-force-exit.s: tests\round-robin-force-exit.c.s
+.PHONY : tests\round-robin-force-exit.s
+
+# target to generate assembly for a file
+tests\round-robin-force-exit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-force-exit.c.s
+.PHONY : tests\round-robin-force-exit.c.s
 
 tests\round-robin-random-duration.obj: tests\round-robin-random-duration.c.obj
 .PHONY : tests\round-robin-random-duration.obj
@@ -1762,6 +1810,9 @@ help:
 	@echo ... tests/fifo-delayed-create.obj
 	@echo ... tests/fifo-delayed-create.i
 	@echo ... tests/fifo-delayed-create.s
+	@echo ... tests/fifo-force-exit.obj
+	@echo ... tests/fifo-force-exit.i
+	@echo ... tests/fifo-force-exit.s
 	@echo ... tests/fifo-random-duration.obj
 	@echo ... tests/fifo-random-duration.i
 	@echo ... tests/fifo-random-duration.s
@@ -1777,6 +1828,9 @@ help:
 	@echo ... tests/round-robin-delayed-create.obj
 	@echo ... tests/round-robin-delayed-create.i
 	@echo ... tests/round-robin-delayed-create.s
+	@echo ... tests/round-robin-force-exit.obj
+	@echo ... tests/round-robin-force-exit.i
+	@echo ... tests/round-robin-force-exit.s
 	@echo ... tests/round-robin-random-duration.obj
 	@echo ... tests/round-robin-random-duration.i
 	@echo ... tests/round-robin-random-duration.s

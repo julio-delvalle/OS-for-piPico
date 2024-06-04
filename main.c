@@ -12,6 +12,7 @@
 static int round_robin_mode = 1; // 0 es FIFO, 1 es round_robin.
 #define TIME_SLICE 45            /* # of timer ticks to give each thread. */
 static unsigned round_robin_ticks = 5;
+extern int thread_exit_on_return;
 
 // PARA MODO:
 void schedule_set_quantum(int mode, int rrticks);
@@ -26,8 +27,8 @@ void schedule_set_quantum(int mode, int rrticks){
         round_robin_mode = 1;
         round_robin_ticks = rrticks;
     }
-
 }
+
 
 
 //Para tests:
@@ -56,6 +57,12 @@ void after_interrupt(void){
             thread_yield();
             //thread_yield_on_return();
         }
+    }
+    
+    if(thread_exit_on_return && thread_current()->duration_ticks != 0){
+        printf("FORCED EXIT thread %s, duration left: %d",thread_current()->name, thread_current()->duration_ticks);
+        thread_exit();
+        thread_exit_on_return = 0;
     }
 }
 

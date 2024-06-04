@@ -32,6 +32,8 @@ add_executable(main
     tests/sleep-multiple-fifo.c
     tests/sleep-multiple-rr.c
     tests/sleep-negative.c
+    tests/fifo-force-exit.c
+    tests/round-robin-force-exit.c
     tests/temp-test.c
 )
 

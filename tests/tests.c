@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdio.h>
 
+int thread_exit_on_return = 0;
 
 const struct test tests[] = 
   {
@@ -19,6 +20,8 @@ const struct test tests[] =
     {"sleep-multiple-fifo", test_sleep_multiple_fifo},
     {"sleep-multiple-rr", test_sleep_multiple_rr},
     {"sleep-negative", test_sleep_negative},
+    {"fifo-force-exit", test_fifo_force_exit},
+    {"round-robin-force-exit", test_round_robin_force_exit},
     {"temp-test", test_temp_test},
   };
 
@@ -33,6 +36,10 @@ void print_test_names(void){
 
 int getNumberOfTests(void){
   return sizeof(tests)/sizeof(tests[0]);
+}
+
+void set_thread_exit_on_return(){
+    thread_exit_on_return = 1;
 }
 
 char* getTestName(int testN){

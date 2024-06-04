@@ -345,6 +345,10 @@ thread_yield (void)
   //ASSERT (!intr_context ());
 
   //old_level = intr_disable ();
+
+  int32_t old_level = save_and_disable_interrupts();
+
+
   if(!list_empty(&ready_list)){
       if (cur != idle_thread && cur != initial_thread){
         printf("--YIELD! thread_ticks: %d ; duration left %d\n\n",thread_ticks, thread_current()->duration_ticks);
@@ -354,7 +358,7 @@ thread_yield (void)
     schedule ();
   }
   
-
+  restore_interrupts(old_level);
   //intr_set_level (old_level);
 }
 
@@ -398,7 +402,7 @@ thread_exit (void)
     list_remove (&thread_current()->allelem);
     printf("\n===EXIT thread %s\n\n",thread_current()->name);
     thread_current ()->status = THREAD_DYING;
-    schedule();
+    schedule ();
   }else{
     thread_yield ();
   }
