@@ -1300,6 +1300,78 @@ tests\round-robin-simple.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-simple.c.s
 .PHONY : tests\round-robin-simple.c.s
 
+tests\sleep-multiple-fifo.obj: tests\sleep-multiple-fifo.c.obj
+.PHONY : tests\sleep-multiple-fifo.obj
+
+# target to build an object file
+tests\sleep-multiple-fifo.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-multiple-fifo.c.obj
+.PHONY : tests\sleep-multiple-fifo.c.obj
+
+tests\sleep-multiple-fifo.i: tests\sleep-multiple-fifo.c.i
+.PHONY : tests\sleep-multiple-fifo.i
+
+# target to preprocess a source file
+tests\sleep-multiple-fifo.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-multiple-fifo.c.i
+.PHONY : tests\sleep-multiple-fifo.c.i
+
+tests\sleep-multiple-fifo.s: tests\sleep-multiple-fifo.c.s
+.PHONY : tests\sleep-multiple-fifo.s
+
+# target to generate assembly for a file
+tests\sleep-multiple-fifo.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-multiple-fifo.c.s
+.PHONY : tests\sleep-multiple-fifo.c.s
+
+tests\sleep-multiple-rr.obj: tests\sleep-multiple-rr.c.obj
+.PHONY : tests\sleep-multiple-rr.obj
+
+# target to build an object file
+tests\sleep-multiple-rr.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-multiple-rr.c.obj
+.PHONY : tests\sleep-multiple-rr.c.obj
+
+tests\sleep-multiple-rr.i: tests\sleep-multiple-rr.c.i
+.PHONY : tests\sleep-multiple-rr.i
+
+# target to preprocess a source file
+tests\sleep-multiple-rr.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-multiple-rr.c.i
+.PHONY : tests\sleep-multiple-rr.c.i
+
+tests\sleep-multiple-rr.s: tests\sleep-multiple-rr.c.s
+.PHONY : tests\sleep-multiple-rr.s
+
+# target to generate assembly for a file
+tests\sleep-multiple-rr.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-multiple-rr.c.s
+.PHONY : tests\sleep-multiple-rr.c.s
+
+tests\sleep-single.obj: tests\sleep-single.c.obj
+.PHONY : tests\sleep-single.obj
+
+# target to build an object file
+tests\sleep-single.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-single.c.obj
+.PHONY : tests\sleep-single.c.obj
+
+tests\sleep-single.i: tests\sleep-single.c.i
+.PHONY : tests\sleep-single.i
+
+# target to preprocess a source file
+tests\sleep-single.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-single.c.i
+.PHONY : tests\sleep-single.c.i
+
+tests\sleep-single.s: tests\sleep-single.c.s
+.PHONY : tests\sleep-single.s
+
+# target to generate assembly for a file
+tests\sleep-single.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\sleep-single.c.s
+.PHONY : tests\sleep-single.c.s
+
 tests\temp-test.obj: tests\temp-test.c.obj
 .PHONY : tests\temp-test.obj
 
@@ -1525,6 +1597,15 @@ help:
 	@echo ... tests/round-robin-simple.obj
 	@echo ... tests/round-robin-simple.i
 	@echo ... tests/round-robin-simple.s
+	@echo ... tests/sleep-multiple-fifo.obj
+	@echo ... tests/sleep-multiple-fifo.i
+	@echo ... tests/sleep-multiple-fifo.s
+	@echo ... tests/sleep-multiple-rr.obj
+	@echo ... tests/sleep-multiple-rr.i
+	@echo ... tests/sleep-multiple-rr.s
+	@echo ... tests/sleep-single.obj
+	@echo ... tests/sleep-single.i
+	@echo ... tests/sleep-single.s
 	@echo ... tests/temp-test.obj
 	@echo ... tests/temp-test.i
 	@echo ... tests/temp-test.s

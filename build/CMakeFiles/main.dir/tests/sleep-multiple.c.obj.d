@@ -1,4 +1,5 @@
-CMakeFiles\main.dir\main.c.obj: C:\RaspberryPiPico\pico-projects\main.c \
+CMakeFiles\main.dir\tests\sleep-multiple.c.obj: \
+ C:\RaspberryPiPico\pico-projects\tests\sleep-multiple.c \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\stdio.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\_ansi.h \
  c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\newlib.h \
@@ -69,12 +70,7 @@ CMakeFiles\main.dir\main.c.obj: C:\RaspberryPiPico\pico-projects\main.c \
  C:\RaspberryPiPico\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/uart.h \
  C:\RaspberryPiPico\pico-sdk\src\rp2040\hardware_regs\include/hardware/regs/dreq.h \
  C:\RaspberryPiPico\pico-sdk\src\rp2_common\pico_stdio_uart\include/pico/stdio_uart.h \
- C:\RaspberryPiPico\pico-projects\threads/thread.h \
- c:\raspberrypipico\pico-projects\misc\list.h \
- C:\RaspberryPiPico\pico-projects\lib/debug.h \
- C:\RaspberryPiPico\pico-projects\misc/timer.h \
- C:\RaspberryPiPico\pico-projects\lib/palloc.h \
  c:\raspberrypipico\pico-projects\tests\tests.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\stdlib.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\machine\stdlib.h \
- c:\progra~2\gnu\ arm\ embedded\ toolchain\10\ 2021.10\arm-none-eabi\include\alloca.h
+ c:\raspberrypipico\pico-projects\threads\thread.h \
+ c:\raspberrypipico\pico-projects\misc\list.h \
+ c:\raspberrypipico\pico-projects\misc\timer.h

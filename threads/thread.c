@@ -345,8 +345,10 @@ thread_yield (void)
 
   //old_level = intr_disable ();
   if(!list_empty(&ready_list)){
-      if (cur != idle_thread && cur != initial_thread)
-      list_push_back (&ready_list, &cur->elem);
+      if (cur != idle_thread && cur != initial_thread){
+        printf("--YIELD! thread_ticks: %d ; duration left %d\n\n",thread_ticks, thread_current()->duration_ticks);
+        list_push_back (&ready_list, &cur->elem);
+      }
     cur->status = THREAD_READY; 
     schedule ();
   }
@@ -393,7 +395,7 @@ thread_exit (void)
   //intr_disable ();
   if(thread_current() != initial_thread && thread_current() != idle_thread){
     list_remove (&thread_current()->allelem);
-    printf("===EXIT thread %s\n",thread_current()->name);
+    printf("\n===EXIT thread %s\n\n",thread_current()->name);
     thread_current ()->status = THREAD_DYING;
     schedule();
   }else{
@@ -507,6 +509,21 @@ void insertar_en_lista_espera(int ticks){
   restore_interrupts(old_level);
 }
 
+void thread_sleep (int ticks)
+{
+  int start = timer_ticks ();
+
+  //ASSERT (intr_get_level () == INTR_ON);
+  /*while (timer_elapsed (start) < ticks)
+    thread_yield ();*/
+
+  if(ticks > 0){
+    printf("SLEEP thread %s - %d ticks.\n",thread_current()->name, ticks);
+    //Si es negativo, no lo pone en espera. Esto por test alarm-negative
+    insertar_en_lista_espera(ticks);
+  }
+}
+
 void remover_thread_durmiente(int ticks){
 
   //Llamada deste timer_interrupt () en timer.c
@@ -520,6 +537,7 @@ void remover_thread_durmiente(int ticks){
     //Si el tiempo actual es mayor al tiempo que el thread debe estar dormido, entonces debe salir:
     if(ticks >= thread_lista_espera->sleep_time){
       //quitar de lista espera y agregar a ready_list:
+      printf("--Wake Up! Thread %s\n",thread_lista_espera->name);
       iter = list_remove(iter);
       thread_unblock(thread_lista_espera);
     }else{
@@ -629,7 +647,6 @@ void print_all_list(){
 
     ASSERT (&all_list != NULL);
 
-    printf("LISTA: ");
     for (e = list_begin (&all_list); e != list_end (&all_list); e = list_next (e)){
         struct thread *current = list_entry(e, struct thread, allelem);
         printf("[%s] -> ",&current->name);
@@ -641,4 +658,12 @@ void print_ready_list(){
 }
 void print_blocked_list(){
   print_thread_list(&lista_espera);
+}
+void print_lists(){
+  printf("\n");
+  printf("READY: ");
+  print_ready_list();
+  printf("BLOCKED: ");
+  print_blocked_list();
+  printf("\n");
 }

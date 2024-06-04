@@ -3,7 +3,8 @@
         "thread.h": "c",
         "limits.h": "c",
         "thread": "c",
-        "debug.h": "c"
+        "debug.h": "c",
+        "timer.h": "c"
     },
     "cortex-debug.variableUseNaturalFormat": true
 }

@@ -4,25 +4,32 @@
 #include <string.h>
 #include <stdio.h>
 
-struct test 
-  {
-    const char *name;
-    test_func *function;
-  };
 
-static const struct test tests[] = 
+const struct test tests[] = 
   {
     {"alarm-negative", test_alarm_negative},
     {"temp-test", test_temp_test},
     {"round-robin-simple", test_round_robin_simple},
+    {"sleep-single", test_sleep_single},
+    {"sleep-multiple-fifo", test_sleep_multiple_fifo},
+    {"sleep-multiple-rr", test_sleep_multiple_rr},
   };
+
 
 static const char *test_name;
 
 void print_test_names(void){
   for(int i = 0; i < (sizeof(tests)/sizeof(tests[0])); i++){
-        printf("Test %d: %s\n",i,tests[i].name);
+        printf("Test %d: %s\n",i+1,tests[i].name);
     }
+}
+
+int getNumberOfTests(void){
+  return sizeof(tests)/sizeof(tests[0]);
+}
+
+char* getTestName(int testN){
+  return tests[testN].name;
 }
 
 /* Runs the test named NAME. */

@@ -23,6 +23,9 @@ add_executable(main
     tests/alarm-negative.c
     tests/temp-test.c
     tests/round-robin-simple.c
+    tests/sleep-single.c
+    tests/sleep-multiple-fifo.c
+    tests/sleep-multiple-rr.c
 )
 
 target_link_libraries(main pico_stdlib hardware_sync)

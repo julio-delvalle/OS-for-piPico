@@ -99,6 +99,7 @@ void block_if_idle_thread(void);
 void set_thread_running(struct thread *);
 void insertar_en_lista_espera(int ticks);
 void remover_thread_durmiente(int ticks);
+void thread_sleep (int ticks);
 
 
 typedef void thread_func (void *aux);//puntero a función que va a ejecutar el thread.
@@ -110,6 +111,7 @@ void print_thread_list(struct list *list);
 void print_all_list();
 void print_ready_list();
 void print_blocked_list();
+void print_lists();
 
 
 #endif /* THREAD_H */

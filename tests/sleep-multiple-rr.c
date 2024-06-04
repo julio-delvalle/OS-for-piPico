@@ -8,14 +8,12 @@
 
 
 void
-test_round_robin_simple (void) 
+test_sleep_multiple_rr (void) 
 {
     gpio_put(25,1);
     sleep_ms(1000);
 
-    schedule_set_quantum(1,9);
-
-    //schedule_set_quantum(1,5); //round robin mode, con cambios cada 5
+    schedule_set_quantum(1,4);
 
     int count = 0;
     char nombre[] = "thread";
@@ -24,7 +22,8 @@ test_round_robin_simple (void)
     for(int i = 0; i<5;i++){
         sprintf(nombre, "thread%d", i);
         count++; 
-        thread_create(nombre, NULL, NULL, 10*(i+1));
+        thread_create(nombre, NULL, NULL, 3*(i+1));
+        thread_sleep(5*(i+1));
     }
 
     print_lists();

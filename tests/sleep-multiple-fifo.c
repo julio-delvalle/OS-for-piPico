@@ -7,36 +7,29 @@
 
 
 
-
-void hello_world(void *t);
-
-void hello_world(void* t){
-    msg("Hello World from thread!\n");
-}
-
-
-
 void
-test_temp_test (void) 
+test_sleep_multiple_fifo (void) 
 {
     gpio_put(25,1);
-    sleep_ms(3000);
+    sleep_ms(1000);
 
     schedule_set_quantum(0,5);
 
     int count = 0;
-    char nombre[] = "hola";
+    char nombre[] = "thread";
 
 
     for(int i = 0; i<5;i++){
-        sprintf(nombre, "hola%d", i);
+        sprintf(nombre, "thread%d", i);
         count++; 
-        thread_create(nombre, hello_world, NULL, 10*(i+1));
+        thread_create(nombre, NULL, NULL, 3*(i+1));
+        thread_sleep(5*(i+1));
     }
 
-
     print_lists();
-    gpio_put(25,1);
 
+    //sleep_ms(5000);
+    //for(int i=0;i<100000;i++){};
+    //busy_wait_ms(5000);
     
 }
