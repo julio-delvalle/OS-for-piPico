@@ -93,6 +93,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/misc/timer.c.obj.d"
   "CMakeFiles/main.dir/tests/alarm-negative.c.obj"
   "CMakeFiles/main.dir/tests/alarm-negative.c.obj.d"
+  "CMakeFiles/main.dir/tests/round-robin-simple.c.obj"
+  "CMakeFiles/main.dir/tests/round-robin-simple.c.obj.d"
   "CMakeFiles/main.dir/tests/temp-test.c.obj"
   "CMakeFiles/main.dir/tests/temp-test.c.obj.d"
   "CMakeFiles/main.dir/tests/tests.c.obj"

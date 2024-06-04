@@ -13,7 +13,6 @@ static struct thread *running_thread (void);
 static struct thread *running_thread_init (void);
 static tid_t allocate_tid (void);
 
-static int round_robin_mode = 0; // 0 es FIFO, 1 es round_robin.
 
 
 //THREADS IMPORTANTES
@@ -72,8 +71,6 @@ static long long kernel_ticks;  /* # of timer ticks in kernel threads. */
 static long long user_ticks;    /* # of timer ticks in user programs. */
 
 //Para scheduling 
-#define TIME_SLICE 45            /* # of timer ticks to give each thread. */
-static unsigned round_robin_ticks;
 unsigned thread_ticks;   /* # of timer ticks since last yield. */
 
 
@@ -264,7 +261,7 @@ thread_create (const char *name,
   struct switch_threads_frame *sf;
   tid_t tid;
 
-  ASSERT (function != NULL);
+  //ASSERT (function != NULL); // NO IMPORTA QUE SEA NULL, NO SE ESTÁ MANDANDO A LLAMAR AHORITA.
 
   /* Allocate thread. */
   //t = palloc_get_page (PAL_ZERO);
@@ -428,15 +425,6 @@ thread_tick (void)
 
 
   thread_ticks++;
-
-  if(round_robin_mode){ // Si está habilitado round_robin, cambiar al TIME_SLICE
-    /* Enforce preemption. */
-    if (++thread_ticks >= TIME_SLICE)
-      printf("HACER YIELD!\n");
-
-      //thread_yield_on_return();
-  }
-
   t->duration_ticks--;
   
 }

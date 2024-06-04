@@ -22,6 +22,7 @@ add_executable(main
     #listado de tests
     tests/alarm-negative.c
     tests/temp-test.c
+    tests/round-robin-simple.c
 )
 
 target_link_libraries(main pico_stdlib hardware_sync)

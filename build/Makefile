@@ -1276,6 +1276,30 @@ tests\alarm-negative.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\alarm-negative.c.s
 .PHONY : tests\alarm-negative.c.s
 
+tests\round-robin-simple.obj: tests\round-robin-simple.c.obj
+.PHONY : tests\round-robin-simple.obj
+
+# target to build an object file
+tests\round-robin-simple.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-simple.c.obj
+.PHONY : tests\round-robin-simple.c.obj
+
+tests\round-robin-simple.i: tests\round-robin-simple.c.i
+.PHONY : tests\round-robin-simple.i
+
+# target to preprocess a source file
+tests\round-robin-simple.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-simple.c.i
+.PHONY : tests\round-robin-simple.c.i
+
+tests\round-robin-simple.s: tests\round-robin-simple.c.s
+.PHONY : tests\round-robin-simple.s
+
+# target to generate assembly for a file
+tests\round-robin-simple.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-simple.c.s
+.PHONY : tests\round-robin-simple.c.s
+
 tests\temp-test.obj: tests\temp-test.c.obj
 .PHONY : tests\temp-test.obj
 
@@ -1498,6 +1522,9 @@ help:
 	@echo ... tests/alarm-negative.obj
 	@echo ... tests/alarm-negative.i
 	@echo ... tests/alarm-negative.s
+	@echo ... tests/round-robin-simple.obj
+	@echo ... tests/round-robin-simple.i
+	@echo ... tests/round-robin-simple.s
 	@echo ... tests/temp-test.obj
 	@echo ... tests/temp-test.i
 	@echo ... tests/temp-test.s

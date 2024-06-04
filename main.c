@@ -7,6 +7,28 @@
 #include "tests/tests.h"
 
 
+static int round_robin_mode = 1; // 0 es FIFO, 1 es round_robin.
+
+
+
+//Para scheduling 
+#define TIME_SLICE 45            /* # of timer ticks to give each thread. */
+static unsigned round_robin_ticks = 5;
+// PARA MODO:
+void schedule_set_quantum(int mode, int rrticks);
+
+void schedule_set_quantum(int mode, int rrticks){
+    //mode 0 : FIFO
+    //mode 1 : round_robin
+
+    if(mode == 0){
+        round_robin_mode = 0;
+    }else if(mode == 1 && rrticks > 0){
+        round_robin_mode = 1;
+        round_robin_ticks = rrticks;
+    }
+
+}
 
 
 //PARA TIMER:
@@ -26,6 +48,9 @@ bool timer_interrupt (struct repeating_timer *t)
 }
 
 
+ 
+
+
 
 void after_interrupt(){
     block_if_idle_thread();
@@ -33,6 +58,16 @@ void after_interrupt(){
     if (thread_current()->duration_ticks <= 0){
         printf("thread_ticks: %d ; duration left %d\n",thread_ticks, thread_current()->duration_ticks);
         thread_exit();
+    }
+
+    if(round_robin_mode){ // Si está habilitado round_robin, cambiar al TIME_SLICE
+    /* Enforce preemption. */
+        if (thread_ticks >= round_robin_ticks){
+            //printf("HACER YIELD!\n");
+            printf("thread_ticks: %d ; duration left %d\n",thread_ticks, thread_current()->duration_ticks);
+            thread_yield();
+            //thread_yield_on_return();
+        }
     }
 }
 
@@ -83,7 +118,7 @@ int main(){
 
 
 
-    run_test("temp-test");
+    run_test("round-robin-simple");
     
     while(1){
         after_interrupt();

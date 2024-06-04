@@ -7,6 +7,7 @@ typedef void test_func (void);
 
 extern test_func test_alarm_negative;
 extern test_func test_temp_test;
+extern test_func test_round_robin_simple;
 
 void print_test_names(void);
 void msg (const char *, ...);
