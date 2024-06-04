@@ -232,7 +232,6 @@ init_thread (struct thread *t, const char *name)
 
   list_push_back (&all_list, &t->allelem);
 
-  printf("Se creó el thread (%s)\n",name);
 }
 /* Starts preemptive thread scheduling by enabling interrupts.
    Also creates the idle thread. */
@@ -275,6 +274,8 @@ thread_create (const char *name,
   init_thread (t, name);
   tid = t->tid = allocate_tid ();
   t->duration_ticks = duration;
+  printf("Se creó el thread \"%s\" con duración %d\n",name,duration);
+
 
   /* Stack frame for kernel_thread(). */
   kf = alloc_frame (t, sizeof *kf);

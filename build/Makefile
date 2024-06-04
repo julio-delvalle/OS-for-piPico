@@ -1252,29 +1252,149 @@ misc\timer.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\misc\timer.c.s
 .PHONY : misc\timer.c.s
 
-tests\alarm-negative.obj: tests\alarm-negative.c.obj
-.PHONY : tests\alarm-negative.obj
+tests\fifo-random-duration.obj: tests\fifo-random-duration.c.obj
+.PHONY : tests\fifo-random-duration.obj
 
 # target to build an object file
-tests\alarm-negative.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\alarm-negative.c.obj
-.PHONY : tests\alarm-negative.c.obj
+tests\fifo-random-duration.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-random-duration.c.obj
+.PHONY : tests\fifo-random-duration.c.obj
 
-tests\alarm-negative.i: tests\alarm-negative.c.i
-.PHONY : tests\alarm-negative.i
+tests\fifo-random-duration.i: tests\fifo-random-duration.c.i
+.PHONY : tests\fifo-random-duration.i
 
 # target to preprocess a source file
-tests\alarm-negative.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\alarm-negative.c.i
-.PHONY : tests\alarm-negative.c.i
+tests\fifo-random-duration.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-random-duration.c.i
+.PHONY : tests\fifo-random-duration.c.i
 
-tests\alarm-negative.s: tests\alarm-negative.c.s
-.PHONY : tests\alarm-negative.s
+tests\fifo-random-duration.s: tests\fifo-random-duration.c.s
+.PHONY : tests\fifo-random-duration.s
 
 # target to generate assembly for a file
-tests\alarm-negative.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\alarm-negative.c.s
-.PHONY : tests\alarm-negative.c.s
+tests\fifo-random-duration.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-random-duration.c.s
+.PHONY : tests\fifo-random-duration.c.s
+
+tests\fifo-simple.obj: tests\fifo-simple.c.obj
+.PHONY : tests\fifo-simple.obj
+
+# target to build an object file
+tests\fifo-simple.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-simple.c.obj
+.PHONY : tests\fifo-simple.c.obj
+
+tests\fifo-simple.i: tests\fifo-simple.c.i
+.PHONY : tests\fifo-simple.i
+
+# target to preprocess a source file
+tests\fifo-simple.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-simple.c.i
+.PHONY : tests\fifo-simple.c.i
+
+tests\fifo-simple.s: tests\fifo-simple.c.s
+.PHONY : tests\fifo-simple.s
+
+# target to generate assembly for a file
+tests\fifo-simple.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\fifo-simple.c.s
+.PHONY : tests\fifo-simple.c.s
+
+tests\hello-world.obj: tests\hello-world.c.obj
+.PHONY : tests\hello-world.obj
+
+# target to build an object file
+tests\hello-world.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\hello-world.c.obj
+.PHONY : tests\hello-world.c.obj
+
+tests\hello-world.i: tests\hello-world.c.i
+.PHONY : tests\hello-world.i
+
+# target to preprocess a source file
+tests\hello-world.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\hello-world.c.i
+.PHONY : tests\hello-world.c.i
+
+tests\hello-world.s: tests\hello-world.c.s
+.PHONY : tests\hello-world.s
+
+# target to generate assembly for a file
+tests\hello-world.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\hello-world.c.s
+.PHONY : tests\hello-world.c.s
+
+tests\round-robin-1tick.obj: tests\round-robin-1tick.c.obj
+.PHONY : tests\round-robin-1tick.obj
+
+# target to build an object file
+tests\round-robin-1tick.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-1tick.c.obj
+.PHONY : tests\round-robin-1tick.c.obj
+
+tests\round-robin-1tick.i: tests\round-robin-1tick.c.i
+.PHONY : tests\round-robin-1tick.i
+
+# target to preprocess a source file
+tests\round-robin-1tick.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-1tick.c.i
+.PHONY : tests\round-robin-1tick.c.i
+
+tests\round-robin-1tick.s: tests\round-robin-1tick.c.s
+.PHONY : tests\round-robin-1tick.s
+
+# target to generate assembly for a file
+tests\round-robin-1tick.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-1tick.c.s
+.PHONY : tests\round-robin-1tick.c.s
+
+tests\round-robin-delayed-create.obj: tests\round-robin-delayed-create.c.obj
+.PHONY : tests\round-robin-delayed-create.obj
+
+# target to build an object file
+tests\round-robin-delayed-create.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-delayed-create.c.obj
+.PHONY : tests\round-robin-delayed-create.c.obj
+
+tests\round-robin-delayed-create.i: tests\round-robin-delayed-create.c.i
+.PHONY : tests\round-robin-delayed-create.i
+
+# target to preprocess a source file
+tests\round-robin-delayed-create.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-delayed-create.c.i
+.PHONY : tests\round-robin-delayed-create.c.i
+
+tests\round-robin-delayed-create.s: tests\round-robin-delayed-create.c.s
+.PHONY : tests\round-robin-delayed-create.s
+
+# target to generate assembly for a file
+tests\round-robin-delayed-create.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-delayed-create.c.s
+.PHONY : tests\round-robin-delayed-create.c.s
+
+tests\round-robin-random-duration.obj: tests\round-robin-random-duration.c.obj
+.PHONY : tests\round-robin-random-duration.obj
+
+# target to build an object file
+tests\round-robin-random-duration.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-random-duration.c.obj
+.PHONY : tests\round-robin-random-duration.c.obj
+
+tests\round-robin-random-duration.i: tests\round-robin-random-duration.c.i
+.PHONY : tests\round-robin-random-duration.i
+
+# target to preprocess a source file
+tests\round-robin-random-duration.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-random-duration.c.i
+.PHONY : tests\round-robin-random-duration.c.i
+
+tests\round-robin-random-duration.s: tests\round-robin-random-duration.c.s
+.PHONY : tests\round-robin-random-duration.s
+
+# target to generate assembly for a file
+tests\round-robin-random-duration.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main.dir\tests\round-robin-random-duration.c.s
+.PHONY : tests\round-robin-random-duration.c.s
 
 tests\round-robin-simple.obj: tests\round-robin-simple.c.obj
 .PHONY : tests\round-robin-simple.obj
@@ -1591,9 +1711,24 @@ help:
 	@echo ... misc/timer.obj
 	@echo ... misc/timer.i
 	@echo ... misc/timer.s
-	@echo ... tests/alarm-negative.obj
-	@echo ... tests/alarm-negative.i
-	@echo ... tests/alarm-negative.s
+	@echo ... tests/fifo-random-duration.obj
+	@echo ... tests/fifo-random-duration.i
+	@echo ... tests/fifo-random-duration.s
+	@echo ... tests/fifo-simple.obj
+	@echo ... tests/fifo-simple.i
+	@echo ... tests/fifo-simple.s
+	@echo ... tests/hello-world.obj
+	@echo ... tests/hello-world.i
+	@echo ... tests/hello-world.s
+	@echo ... tests/round-robin-1tick.obj
+	@echo ... tests/round-robin-1tick.i
+	@echo ... tests/round-robin-1tick.s
+	@echo ... tests/round-robin-delayed-create.obj
+	@echo ... tests/round-robin-delayed-create.i
+	@echo ... tests/round-robin-delayed-create.s
+	@echo ... tests/round-robin-random-duration.obj
+	@echo ... tests/round-robin-random-duration.i
+	@echo ... tests/round-robin-random-duration.s
 	@echo ... tests/round-robin-simple.obj
 	@echo ... tests/round-robin-simple.i
 	@echo ... tests/round-robin-simple.s

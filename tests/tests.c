@@ -7,12 +7,17 @@
 
 const struct test tests[] = 
   {
-    {"alarm-negative", test_alarm_negative},
-    {"temp-test", test_temp_test},
+    {"hello-world", test_hello_world},
+    {"fifo-simple", test_fifo_simple},
     {"round-robin-simple", test_round_robin_simple},
+    {"round-robin-1tick", test_round_robin_1tick},
+    {"fifo-random-duration", test_fifo_random_duration},
+    {"round-robin-random-duration", test_round_robin_random_duration},
+    {"round-robin-delayed-create", test_round_robin_delayed_create},
     {"sleep-single", test_sleep_single},
     {"sleep-multiple-fifo", test_sleep_multiple_fifo},
     {"sleep-multiple-rr", test_sleep_multiple_rr},
+    {"temp-test", test_temp_test},
   };
 
 

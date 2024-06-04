@@ -5,9 +5,9 @@
 #include "../threads/thread.h"
 
 void
-test_alarm_negative (void) 
+test_hello_world (void) 
 {
   //timer_sleep (-100);
   //pass ();
-  msg("Hello world alarm-negative!!\n");
+  msg("Hello world from test!!\n");
 }

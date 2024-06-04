@@ -38,24 +38,12 @@ extern const struct test tests[];
 /* Number of timer ticks since OS booted. */
 int ticks = 0;
 extern unsigned thread_ticks;
-/* Timer interrupt handler. */
-bool timer_interrupt (struct repeating_timer *t)
-{
-    ticks++;
-    thread_tick ();
-    printf("Se está ejecutando thread %s, ticks %d\n",thread_current()->name, ticks);
-    
-    remover_thread_durmiente(ticks);
-
-    return true;
-}
+//INTERRUPTS:
+bool timer_interrupt (struct repeating_timer *t);
+void after_interrupt(void);
 
 
- 
-
-
-
-void after_interrupt(){
+void after_interrupt(void){
     block_if_idle_thread();
 
     if (thread_current()->duration_ticks <= 0){
@@ -70,6 +58,21 @@ void after_interrupt(){
         }
     }
 }
+
+/* Timer interrupt handler. */
+bool timer_interrupt (struct repeating_timer *t)
+{
+    ticks++;
+    thread_tick ();
+    printf("Se está ejecutando thread %s, ticks %d\n",thread_current()->name, ticks);
+    
+    remover_thread_durmiente(ticks);
+
+    return true;
+}
+
+
+
 
 
 int main(){
@@ -129,10 +132,6 @@ int main(){
 
         run_test(test_name);
 
-        //printf("SE TERMINÓ RUN_TEST\n"); // =============================== QUITAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ===============
-        //printf("SE TERMINÓ RUN_TEST\n"); // =============================== QUITAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ===============
-        printf("SE TERMINÓ RUN_TEST\n"); // =============================== QUITAR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ===============
-        
         while(1){
             after_interrupt();
         }

@@ -20,12 +20,17 @@ add_executable(main
     tests/tests.c
 
     #listado de tests
-    tests/alarm-negative.c
-    tests/temp-test.c
+    tests/hello-world.c
+    tests/fifo-simple.c
     tests/round-robin-simple.c
+    tests/round-robin-1tick.c
+    tests/fifo-random-duration.c
+    tests/round-robin-random-duration.c
+    tests/round-robin-delayed-create.c
     tests/sleep-single.c
     tests/sleep-multiple-fifo.c
     tests/sleep-multiple-rr.c
+    tests/temp-test.c
 )
 
 target_link_libraries(main pico_stdlib hardware_sync)

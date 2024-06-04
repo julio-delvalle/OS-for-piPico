@@ -8,12 +8,12 @@
 
 
 void
-test_round_robin_simple (void) 
+test_round_robin_1tick (void) 
 {
     gpio_put(25,1);
     sleep_ms(1000);
 
-    schedule_set_quantum(1,5);
+    schedule_set_quantum(1,1);
 
     //schedule_set_quantum(1,5); //round robin mode, con cambios cada 5
 

@@ -3,17 +3,18 @@
 #include "./tests.h"
 #include "../threads/thread.h"
 #include "../misc/timer.h"
+#include <stdlib.h>
 
 
 
 
 void
-test_round_robin_simple (void) 
+test_fifo_random_duration (void) 
 {
     gpio_put(25,1);
     sleep_ms(1000);
 
-    schedule_set_quantum(1,5);
+    schedule_set_quantum(0,NULL);
 
     //schedule_set_quantum(1,5); //round robin mode, con cambios cada 5
 
@@ -22,9 +23,10 @@ test_round_robin_simple (void)
 
 
     for(int i = 0; i<5;i++){
+        int r = rand() % 25+5;        //Crea thread con duración Random entre 5 y 30
         sprintf(nombre, "thread%d", i);
         count++; 
-        thread_create(nombre, NULL, NULL, 10);
+        thread_create(nombre, NULL, NULL, r);
     }
 
     print_lists();
